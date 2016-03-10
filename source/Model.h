@@ -7,15 +7,11 @@
 
 using namespace std;
 
-/* Included Header Files
+/* Included Header Files */
+#include "UserAccount.h"
+#include "DataRequestForm.h"
 
-#include "userAccount.h"
-#include "dataRequestForm.h"
-
-*/
-
-
-class model
+class Model
 {
 
 protected:
@@ -23,10 +19,11 @@ protected:
   dataRequestForm dataRequestForm;
 
 public:
+  Model();
   bool createUser(userAccount);
   bool deleteUser(userAccount);
   bool loadUser(string, string);
-  bool getTable (string);
+  string getTable (string);
 
 };
 

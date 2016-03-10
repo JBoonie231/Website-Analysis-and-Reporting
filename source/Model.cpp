@@ -10,7 +10,7 @@
 using namespace std;
 
 // Included Header Files
-#include "model.h"
+#include "Model.h"
 
 
 /*
