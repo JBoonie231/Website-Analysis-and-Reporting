@@ -1,0 +1,5 @@
+USERS:
+username,password,role
+admin,password,it
+user1,user1password,marketing
+

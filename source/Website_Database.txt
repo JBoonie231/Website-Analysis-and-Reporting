@@ -1,0 +1,29 @@
+# Tables follow the following design pattern
+#
+# TABLE_NAME_1:
+# column_name_1   ,column_name_2   ,etc...
+# column_1_value_1,column_2_value_1,etc...
+# column_1_value_2,column_2_value_2,etc...
+# 
+# TABLE_NAME_2:
+# etc...
+#
+# NOTES:
+#   Ignore comments.
+#   Comments started by '#'
+#   Keep commas lined up in table for visual clearity.
+#   Ignore whitespace unless surrounded by quotes.
+#   Tables should be seperated by an empty line.
+#   Dates should follow the SQL default format i.e. - YYYY-MM-DD HH:MI:SS
+
+WEBSITE_VISITORS:
+ip_address,username,password        ,date_created
+192.0.0.1 ,default ,                ,2016-01-01 05:43:24
+192.0.0.9 ,vistor1 ,visitor1password,2014-05-25 11:01:59
+
+VISITS:
+visitor_ip,visitor_username,date_of_visit      ,page_visited ,date_left_page
+192.0.0.1 ,default         ,2016-01-01 05:43:24,homepage.html,2016-01-01 05:43:35
+192.0.0.1 ,default         ,2016-01-01 05:43:35,store.html   ,2016-01-01 06:02:09
+192.0.0.1 ,default         ,2016-01-01 06:02:09,checkout.html,2016-01-01 06:05:47
+192.0.0.1 ,default         ,2016-01-01 06:02:09,checkout.html,2016-01-01 06:05:47
