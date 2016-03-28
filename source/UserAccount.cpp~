@@ -13,6 +13,12 @@ using namespace std;
 
 enum roles{ADMIN, GENERAL, ACCOUNT, ENGINEER, MARKETING};
 
+/* account test info
+string userName = "root";
+string password = "pass";
+int role = ADMIN;
+*/
+
 //call connection manager which creates new connection instance on initialization
 connectionManager connMgr();
 
@@ -59,16 +65,7 @@ bool deleteUser(userName);
 	else return false;
 }
 
-//Testing Area
-int main()
-{
-	string userName = "root";
-	string password = "pass";
-	int role = ADMIN;
 
-	//createUser(userName, password, role);
-	loadUser(userName, password);
-	//deleteUser(userName);
-}
+
 
 #endif
