@@ -18,14 +18,16 @@ Purpose: calls frunction create user from userAccount class
 */
 bool getTable(string table)
 {
+  string[][] contents;
+
     // if connection exists return table
   if () 
 
   // connection doesnt exist.. create new connection
   else {
     connMgr.newConnection(conn);
-    conn.getTableContents(table);
-
+    contents = conn.getTableContents(table);
+    table = &contents; // point to address of the contents table
   }
 
 
