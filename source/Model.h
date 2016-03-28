@@ -15,14 +15,14 @@ class Model
 {
 
 protected:
-  userAccount userAccount;
-  dataRequestForm dataRequestForm;
+  UserAccount userAccount;
+  DataRequestForm dataRequestForm;
 
 public:
   Model();
   bool createUser(userAccount);
   bool deleteUser(userAccount);
-  bool loadUser(string, string);
+  bool loadUser(string, string,enum);
   string getTable (string);
 
 };

@@ -4,8 +4,6 @@
 // Libraries
 #include <iostream>
 #include <string>
-#include <vector>
-#include <fstream>
 
 using namespace std;
 
@@ -18,9 +16,12 @@ Function: Create User
 Input: User information to create an account
 Purpose: calls frunction create user from userAccount class
 */
-bool createUser(userAccount newUser)
+bool createUser(UserAccount newUser)
 {
   cout << "Create User: " << newUser << endl;
+
+  newUser.createUser(userAccount);
+
 
 return true;
 
@@ -32,9 +33,12 @@ Function: Delete User
 Input: User account to delete
 Purpose: calls frunction delete user from userAccount class
 */
-bool deleteUser(userAccount account)
+bool deleteUser(UserAccount account)
 {
+
   cout << "Delete User" << account << endl;
+
+  userAccount.deleteUser(account);// send to user account class
 
   return true;
 
@@ -46,9 +50,11 @@ Function: Load User
 Input: Username and password to validate and load the user
 Purpose: calls frunction  load user from userAccount class
 */
-bool loadUser(string username, string password)
+bool loadUser(string username, string password, int role)
 {
+
   cout << "Username: " << username << "\nPassword: " << password << endl;
+  userAccount.loadUser(username, password, &role);
 
   return true;
 
@@ -62,7 +68,7 @@ Purpose: calls frunction get table from the data request form class
 */
 bool getTable (string table)
 {
-
+  dataRequestForm.getTable(table);
 
   return true;
 }

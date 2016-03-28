@@ -8,8 +8,8 @@
 using namespace std;
 
 /* Included Header Files */
-#include "Connection.h"
-#include "ConnectionManager"
+//#include "Connection.h"
+#include "ConnectionManager.h"
 
 
 class DataRequestForm
