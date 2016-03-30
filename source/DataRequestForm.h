@@ -8,7 +8,7 @@
 using namespace std;
 
 /* Included Header Files */
-//#include "Connection.h"
+#include "Connection.h"
 #include "ConnectionManager.h"
 
 
@@ -21,7 +21,9 @@ protected:
 	int* table;
 
 public:
+  DataRequestForm();
 	bool getTable(string);
+  ~DataRequestForm();
 
 };
 

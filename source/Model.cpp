@@ -11,6 +11,25 @@ using namespace std;
 #include "Model.h"
 
 
+
+Model::Model()
+{
+
+
+}
+
+
+Model *Model::instance()
+{
+  if (!inst)
+    // 3. lazy initialization
+    inst = new Model();
+  return inst;
+
+}
+
+
+
 /*
 Function: Create User
 Input: User information to create an account
@@ -20,7 +39,7 @@ bool createUser(UserAccount newUser)
 {
   cout << "Create User: " << newUser << endl;
 
-  newUser.createUser(userAccount);
+  newUser.createUser(newUser);
 
 
 return true;

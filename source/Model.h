@@ -11,19 +11,38 @@ using namespace std;
 #include "UserAccount.h"
 #include "DataRequestForm.h"
 
+/* Singleton Class
+1- Define a private static attribute in the "single instance" class
+2- Define a public static accessor function in the class
+3- Do "lazy initialization" (creation on demand) in the accessor function
+4- Define all constructors to be protected or private
+5- Clients may only use the accessor function to manipulate the Singleton
+6- Inheritance can be supported, but static functions may not be overridden. 
+The base class must be declared a friend of the derived class 
+(in order to access the protected constructor).
+*/
+
 class Model
 {
+
+private:
+  // 1. Private Static attribute
+  static Model *inst;
 
 protected:
   UserAccount userAccount;
   DataRequestForm dataRequestForm;
+  // 4. protected constructor
+  Model();
 
 public:
-  Model();
-  bool createUser(userAccount);
-  bool deleteUser(userAccount);
+  bool createUser(UserAccount);
+  bool deleteUser(UserAccount);
   bool loadUser(string, string,enum);
   string getTable (string);
+
+  // 2. Public Static Accessor
+  static Model *instance();
 
 };
 

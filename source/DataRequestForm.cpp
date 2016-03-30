@@ -11,39 +11,42 @@
 using namespace std;
 
 
+
+
+DataRequestForm::DataRequestForm()
+{
+  Connection conn;
+  ConnectionManager connMgr;
+  
+}
+
+
 /*
 Function: Get Table
 Input: User information to create an account
 Purpose: calls frunction create user from userAccount class
 */
-bool getTable(string table)
+bool DataRequestForm :: getTable(string table)
 {
-  string[][] contents;
+  // change to json string
+  string contents;
   bool connectionState = false;
 
-  // if connection exists return table
-  if ()
-  {
+    // if connection exists save table pointer
+    connMgr.newConnection(table);
     contents = connection.getTableContents(table);
     table = &contents;
     connectionState = true;
 
-  }
+	return connectionState;
 
-  // connection doesnt exist.. create new connection
-  else {
-    connMgr.newConnection(conn);
-    contents = conn.getTableContents(table);
-    table = &contents; // point to address of the contents table
-    connectionState = true;
-  }
+}
 
 
-  // delete connection 
+DataRequestForm :: ~DataRequestForm()
+{
   connMgr.deleteConnection(conn);
 
-
-	return connectionState;
 
 }
 
