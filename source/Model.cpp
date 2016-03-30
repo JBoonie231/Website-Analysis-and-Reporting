@@ -18,11 +18,12 @@ Model::Model()
 
 }
 
+Model* Model::inst = 0;
 
+// initialize the instance for singleton
 Model *Model::instance()
 {
-  if (!inst)
-    // 3. lazy initialization
+  if (inst = 0)
     inst = new Model();
   return inst;
 
