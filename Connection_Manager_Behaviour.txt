@@ -1,0 +1,63 @@
+NO CONNECTIONS
+_________________________
+
+connections          = []
+hashIdentifiers      = []
+numOfConnectionUsers = []
+
+_________________________
+REQUEST FOR CONNECTION
+_________________________
+
+Vector<String> = [User_Database.txt] <= Requested connection doesn't exist yet, so create it and pass it back.
+
+connections          = [connection_1     ]
+hashIdentifiers      = [User_Database.txt]
+numOfConnectionUsers = [1                ]
+
+return connection_1;
+
+_________________________
+REQUEST FOR CONNECTION
+_________________________
+
+Vector<String> = [User_Database.txt] <= Requested connection already exists, so pass back requested connection and increment num of users using that connection.
+
+connections          = [connection_1     ]
+hashIdentifiers      = [User_Database.txt]
+numOfConnectionUsers = [2                ]
+
+return connection_1;
+
+_________________________
+REQUEST FOR CONNECTION
+_________________________
+
+Vector<String> = [Website_Database.txt] <= Requested connection doesn't exist yet, so create it and pass it back.
+
+connections          = [connection_1     ,connection_2        ]
+hashIdentifiers      = [User_Database.txt,Website_Database.txt]
+numOfConnectionUsers = [2                ,1                   ]
+
+return connection_1;
+
+_________________________
+RELEASE (DELETE) CONNECTION
+_________________________
+
+Connection = connection_1 <= Connection has more than 1 user, so decrement num of users but don't delete it.
+
+connections          = [connection_1     ,connection_2        ]
+hashIdentifiers      = [User_Database.txt,Website_Database.txt]
+numOfConnectionUsers = [1                ,1                   ]
+
+_________________________
+RELEASE (DELETE) CONNECTION
+_________________________
+
+Connection = connection_1 <= Connection only has 1 user, so delete it, its hashIdentifier, and its num of users.
+
+connections          = [connection_2        ]
+hashIdentifiers      = [Website_Database.txt]
+numOfConnectionUsers = [1                   ]
+

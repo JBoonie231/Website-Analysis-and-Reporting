@@ -1,3 +1,12 @@
+/**
+	CS 441
+	CommandLine.cpp
+	Purpose: To use the command line console as a user input and user output interface.
+
+	@author Sara Adra, Joshua Boone, Josiah Hayes, Alex Hoppe, Jordan Spinato
+	@version 1.0 3/31/16
+*/
+
 // Libraries
 #include <string>
 #include <iostream>
@@ -20,9 +29,46 @@ void Commandline_UI::displaySearchForm()
 	return;
 }
 
-void Commandline_UI::displayResults(string[][] table)
+/**
+	Displays the results to the screen
+
+	@param table - A JSON string representing the results.
+
+	JSON string format:
+
+	{
+	   "table_name":
+	     [
+	       {
+	         "col_1_header": "row_1_col_1_value",
+	         "col_2_header": "row_1_col_2_value",
+	         "col_3_header": "row_1_col_3_value",
+	         ...,
+	         "con_N_header": "row_1_col_N_value"
+	       },
+	       {
+	         "col_1_header": "row_2_col_1_value",
+	         "col_2_header": "row_2_col_2_value",
+	         "col_3_header": "row_2_col_3_value",
+	         ...,
+	         "con_N_header": "row_2_col_N_value"
+	       },
+	       {
+	         ...
+	       },
+	       {
+	         "col_1_header": "row_N_col_1_value",
+	         "col_2_header": "row_N_col_2_value",
+	         "col_3_header": "row_N_col_3_value",
+	         ...,
+	         "con_N_header": "row_N_col_N_value"
+	       }
+	     ]
+	 }
+*/
+void Commandline_UI::displayResults(string table)
 {
-	for (int x = 0; x < table.size(); x++)
+	/*for (int x = 0; x < table.size(); x++)
 	{
 		for (int y = 0; y < table[x].size(); y++)
 		{
@@ -30,7 +76,8 @@ void Commandline_UI::displayResults(string[][] table)
 			cout << table[x][y];
 		}
 		cout << endl;
-	}
+	}*/
+	cout << table << endl;
 	return;
 }
 

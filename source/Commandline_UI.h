@@ -12,7 +12,7 @@ class Commandline_UI: public Controller, public View
 public:
 	void displayLogIn();
 	void displaySearchForm();
-	void displayResults(string[][] table);
+	void displayResults(string table); // string argument must be a JSON string
 	void displayUserAccount();
 	void displayErrorMsg(string msg);
 

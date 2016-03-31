@@ -1,3 +1,12 @@
+/**
+CS 441
+Website_Reporting.cpp
+Purpose: To retrieve and manipulate website anaylitic data.
+
+@author Sara Adra, Joshua Boone, Josiah Hayes, Alex Hoppe, Jordan Spinato
+@version 1.0 3/31/16
+*/
+
 // Libraries
 #include <string>
 
@@ -48,7 +57,7 @@ main()
 		// Data Search Form
 		case 1 : 
 			string     tableName;
-			string[][] table;
+			string     table;
 
 			view.displaySearchForm();
 			controller.submitSearchForm(tableName);
