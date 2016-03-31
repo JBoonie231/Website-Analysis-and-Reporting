@@ -28,11 +28,11 @@ string Connection::getTableContents(string tableName)
 {
   string line, line2;
   string table;
+  string upperTableName = toUpper(tableName);
+  upperTableName = upperTableName+":";
 
   while(getline(databaseFile, line))
   {
-    string upperTableName = toUpper(tableName);
-    upperTableName = upperTableName+":";
     //need to omit whitespace for each line got to compare without the whitespace
     if (!line.compare(tableName))
     {
@@ -62,7 +62,7 @@ cout<< letter << " == ";
     upper[i] = toupper(letter);
 cout<< upper[i] <<endl;
   }
-cout<< upper <<endl;
+cout<< "upper="<<upper <<endl;
   return upper;
 }
 
