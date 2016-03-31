@@ -10,14 +10,9 @@
 
 using namespace std;
 
-
-
-
 DataRequestForm::DataRequestForm()
 {
-  Connection conn;
-  ConnectionManager connMgr;
-  
+
 }
 
 
@@ -28,16 +23,18 @@ Purpose: calls frunction create user from userAccount class
 */
 bool DataRequestForm :: getTable(string table)
 {
-  // change to json string
   string contents;
   bool connectionState = false;
 
-    // if connection exists save table pointer
-    connMgr.newConnection(table);
-    contents = connection.getTableContents(table);
-    table = &contents;
-    connectionState = true;
+  // if connection exists save table JSON string
+  connMgr.newConnection(table);
+  contents = connection.getTableContents(table);
 
+  table = contents;
+
+
+
+  connectionState = true;
 	return connectionState;
 
 }

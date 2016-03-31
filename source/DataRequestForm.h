@@ -11,14 +11,13 @@ using namespace std;
 #include "Connection.h"
 #include "ConnectionManager.h"
 
-
 class DataRequestForm
 {
 
 protected:
 	Connection conn;
 	ConnectionManager connMgr;
-	int* table;
+	string table; // json string
 
 public:
   DataRequestForm();
