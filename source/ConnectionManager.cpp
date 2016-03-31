@@ -23,13 +23,13 @@ Connection ConnectionManager::newConnection(vector<string> identifiers)
 {
 	// Concatinate identifier values into one hash value
 	string hashIdentifier = "";
-	for (int i = 0; i<identifiers.size() ;i++)
+	for (int i = 0; i < identifiers.size() ;i++)
 	{
 		hashIdentifier += identifiers.at(i);
 	}
 
 	// Search for connection
-	for(int i = 0; i<identifiers.size() ;i++)
+	for(int i = 0; i < identifiers.size() ;i++)
 	{
 		// If connection exists, return it
 		if(identifiers.at(i) == hashIdentifier)
@@ -41,7 +41,7 @@ Connection ConnectionManager::newConnection(vector<string> identifiers)
 
 	// If connection wasn't found, create connection and connection values.
 	connections.push_back(new Connection(identifiers));
-	hashIdentifiers.push_back(hashIdentifiers);
+	hashIdentifiers.push_back(hashIdentifier);
 	numOfConnectionUsers.push_back(1);
 
 	return connections.back();
@@ -52,7 +52,7 @@ Connection ConnectionManager::newConnection(vector<string> identifiers)
 bool ConnectionManager::deleteConnection(Connection connection)
 {
 	// Search for connection
-	for (int i = 0; i<connections.size(); i++)
+	for (int i = 0; i < connections.size(); i++)
 	{
 		if(connections.at(i).equals(connection))
 		{
