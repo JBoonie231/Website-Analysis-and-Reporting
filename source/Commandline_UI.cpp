@@ -68,6 +68,7 @@ void Commandline_UI::displayResults(string table)
 		}
 		cout << endl;
 	}*/
+	cout << table << endl;
 	return;
 }
 
