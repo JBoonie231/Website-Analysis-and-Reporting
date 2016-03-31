@@ -10,11 +10,8 @@ using namespace std;
 // Included Header Files
 #include "Model.h"
 
-
-
 Model::Model()
 {
-
 
 }
 
@@ -28,7 +25,6 @@ Model *Model::instance()
   return inst;
 
 }
-
 
 
 /*
