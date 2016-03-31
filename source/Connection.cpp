@@ -21,24 +21,25 @@ ifstream databaseFile;
 
 Connection::Connection(/*vector<string> identifiers*/)
 {
-    databaseFile.open("Website_Database.txt");//change to depend on length of vector not ... the zero
+    databaseFile.open("Website_Database.txt");//change to depend on length of vector not the zero index
 }
 
 string Connection::getTableContents(string tableName)
 {
-  string line;
+  string line, line2;
   string table;
 
   while(getline(databaseFile, line))
   {
     //tableName = toupper(tableName);
     tableName = "VISITS:";//+":/n";
-    if (getline(databaseFile,line) == tableName)
+    //need to omit whitespace for each line got to compare without the whitespace
+    if (line.compare(tableName))
     {
       table.append(line);
-      while(getline(databaseFile, line)
+      while(getline(databaseFile, line2))
       {
-        table.append(line);        
+        table.append(line2);        
       }
       break;
     }
@@ -51,7 +52,7 @@ string Connection::getTableContents(string tableName)
 
 int main()
 {
-  Connection conn();
+  Connection conn;
 
   string table = "VISITS";
   string table2 = conn.getTableContents(table);
