@@ -14,13 +14,24 @@ using namespace std;
 
 class ConnectionManager
 {
-protected:
+	static ConnectionManager *s_instance;
+
 	vector<Connection> connections;          // List of all connections
-	vector<string>     hashIdentifiers;      //
-	vector<int>        numOfConnectionUsers; //
+	vector<string>     hashIdentifiers;      // List of each connection's identifier
+	vector<int>        numOfConnectionUsers; // List of each connection's number of users
+
+	ConnectionManager();
 
 public:
-	newConnection(vector<Connection> &connections); //
-	deleteConnection(Connection connection);
+	Connection newConnection(vector<string> identifiers); //
+	bool deleteConnection(Connection connection);
+	static ConnectionManager *instance()
+	{
+		if (!s_instance)
+		{
+			s_instance = new ConnectionManager;
+		}
+		return s_instance;
+	}
 };
 #endif

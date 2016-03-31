@@ -19,7 +19,7 @@ using namespace std;
 
 //Input: list of strings
 //Purpose:  creates a new connection between user and db
-Connection newConnection(vector<string> identifiers)
+Connection ConnectionManager::newConnection(vector<string> identifiers)
 {
 	// Concatinate identifier values into one hash value
 	string hashIdentifier = "";
@@ -29,12 +29,12 @@ Connection newConnection(vector<string> identifiers)
 	}
 
 	// Search for connection
-	for(int i = 0; i<hashIdentifiers.size() ;i++)
+	for(int i = 0; i<identifiers.size() ;i++)
 	{
 		// If connection exists, return it
-		if(hashIdentifiers.at(i) == hashIdentifier)
+		if(identifiers.at(i) == hashIdentifier)
 		{
-			numOfConnectionUsers.at(i)=numOfConnectionUsers.at(i)+1 ;
+			numOfConnectionUsers.at(i) = numOfConnectionUsers.at(i) + 1;
 			return connections.at(i);
 		}
 	}
@@ -49,12 +49,12 @@ Connection newConnection(vector<string> identifiers)
 
 //Input: deletes a connection
 //Purpose: disconnects user from db
-bool deleteConnection(connection)
+bool ConnectionManager::deleteConnection(Connection connection)
 {
 	// Search for connection
 	for (int i = 0; i<connections.size(); i++)
 	{
-		if(connections.at(i) == connection)
+		if(connections.at(i).equals(connection))
 		{
 			// If the connection has more than one user, decrement the number of users
 			if(numOfConnectionUsers.at(i) > 1)
@@ -64,9 +64,9 @@ bool deleteConnection(connection)
 			// Otherwise delete the connection and its values.
 			else
 			{
-				connections.erase(i);
-				hashIdentifiers.erase(i);
-				numOfConnectionUsers.erase(i);
+				connections.erase(connections.begin() + i);
+				hashIdentifiers.erase(hashIdentifiers.begin() + i);
+				numOfConnectionUsers.erase(numOfConnectionUsers.begin() + i);
 			}
 			return true;
 		}
