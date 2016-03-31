@@ -12,5 +12,5 @@ public:
 	virtual void displayResults(string)  = 0; // string argument must be a JSON string
 	virtual void displayUserAccount()    = 0;
 	virtual void displayErrorMsg(string) = 0;
-	~View;
+	~View();
 };
