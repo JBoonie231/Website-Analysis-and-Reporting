@@ -10,7 +10,7 @@
 // Included Header Files
 #include "Connection.h"
 #include <ctype.h>
-#include <ctype.h>
+#include <cctype>
 #include <stdio.h>
 
 using namespace std;
@@ -31,10 +31,10 @@ string Connection::getTableContents(string tableName)
 
   while(getline(databaseFile, line))
   {
-    //tableName = toupper(tableName);
-    tableName = "VISITS:";//+":/n";
+    string upperTableName = toUpper(tableName);
+    upperTableName = upperTableName+":";
     //need to omit whitespace for each line got to compare without the whitespace
-    if (line.compare(tableName))
+    if (!line.compare(tableName))
     {
       table.append(line);
       while(getline(databaseFile, line2))
@@ -46,17 +46,34 @@ string Connection::getTableContents(string tableName)
   }
     return table;
 }
+
 //getRow
+//equals : compare the hashIdentifier value of two connections
 
-
+string toUpper(string lower)
+{
+  char letter;
+  string upper;
+cout<< lower <<endl;
+  for(int i=0; i < lower.size(); i++)
+  {
+    letter=lower[i];
+cout<< letter << " == ";
+    upper[i] = toupper(letter);
+cout<< upper[i] <<endl;
+  }
+cout<< upper <<endl;
+  return upper;
+}
 
 int main()
 {
   Connection conn;
 
-  string table = "VISITS";
-  string table2 = conn.getTableContents(table);
-  cout << table2 <<endl;
+  string table = "vists";
+  string ret = toUpper(table);
+  //string table2 = conn.getTableContents(table);
+  cout << ret <<endl;
 
  return 0;
 }

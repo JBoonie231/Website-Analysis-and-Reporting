@@ -9,7 +9,7 @@
 #include <vector>
 #include <ctype.h>
 #include <stdio.h>
-#include <ctype.h>
+#include <cctype>
 
 using namespace std;
 
@@ -25,6 +25,7 @@ class Connection
   string getTableContents (string table);
 };
 
+string toUpper (string lower);
 
 
 #endif
