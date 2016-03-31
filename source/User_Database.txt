@@ -1,5 +1,83 @@
+#--------------------------------------------#
+# Tables follow the following design pattern
+#--------------------------------------------#
+#
+# TABLE_NAME_1:
+# column_name_1   ,column_name_2   ,etc...
+# column_1_value_1,column_2_value_1,etc...
+# column_1_value_2,column_2_value_2,etc...
+# 
+# TABLE_NAME_2:
+# etc...
+#
+#--------------------------------------------#
+# The information gathered from this database file should ordered in the following JSON format
+#--------------------------------------------#
+#
+# {
+#   "table_name": 
+#     [
+#       {
+#         "col_1_header": "row_1_col_1_value",
+#         "col_2_header": "row_1_col_2_value",
+#         "col_3_header": "row_1_col_3_value",
+#         ...,
+#         "con_N_header": "row_1_col_N_value"
+#       },
+#       {
+#         "col_1_header": "row_2_col_1_value",
+#         "col_2_header": "row_2_col_2_value",
+#         "col_3_header": "row_2_col_3_value",
+#         ...,
+#         "con_N_header": "row_2_col_N_value"
+#       },
+#       {
+#         ...
+#       },
+#       {
+#         "col_1_header": "row_N_col_1_value",
+#         "col_2_header": "row_N_col_2_value",
+#         "col_3_header": "row_N_col_3_value",
+#         ...,
+#         "con_N_header": "row_N_col_N_value"
+#       }
+#     ]
+# }
+#
+#--------------------------------------------#
+# JSON FORMAT NOTES:
+#   {} surround the JSON object
+#   An object is a group of string : value pairs.
+#   [] surround an array of values
+#   ,  separate string : value pairs in objects, and values in arrays.
+#   The final string : value pair in an object does not end with a comma, nor does the last value in an array.
+#   values can be:
+#     string
+#     number
+#     object
+#     array
+#     true
+#     false
+#     null
+#
+#   For more detailed JSON formatting information, visit:
+#     http://www.json.org/
+#
+#--------------------------------------------#
+#
+# GENERAL NOTES:
+#   Ignore comments.
+#   Comments started by '#'
+#   Keep commas lined up in table for visual clearity.
+#   Ignore whitespace unless surrounded by quotes.
+#   Tables should be seperated by an empty line.
+#   Dates should follow the SQL default format i.e. - YYYY-MM-DD HH:MI:SS
+#
+#--------------------------------------------#
+
 USERS:
-username,password,role
-admin,password,it
-user1,user1password,marketing
+username,password     ,role     ,connection    
+admin   ,password     ,it       ,User_Database.txt
+user1   ,user1password,marketing,Website_Database.txt
+
 
