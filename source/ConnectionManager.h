@@ -4,6 +4,7 @@
 // Libraries
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -15,28 +16,12 @@ using namespace std;
 class ConnectionManager
 {
 protected:
-	List Connections; // array?
-	List hashIdentifier; //??
-	List numOfConnectionUsers; //
+	vector<Connection> connections; // List of all connections
+	vector<string> hashIdentifiers; //
+	vector<int> numOfConnectionUsers; //
 
 public:
-	newConnection(List<string>); //:connection
-	deleteConnection(connection);
-
-
+	newConnection(vector<Connection> &connections); //
+	deleteConnection(Connection);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #endif
