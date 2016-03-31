@@ -1,3 +1,12 @@
+/**
+	CS 441
+	CommandLine.cpp
+	Purpose: To use the command line console as a user input and user output interface.
+
+	@author Sara Adra, Joshua Boone, Josiah Hayes, Alex Hoppe, Jordan Spinato
+	@version 1.0 3/31/16
+*/
+
 // Libraries
 #include <string>
 #include <iostream>
