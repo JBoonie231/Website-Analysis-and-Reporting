@@ -17,11 +17,11 @@ class ConnectionManager
 protected:
 	List Connections; // array?
 	List hashIdentifier; //??
-	List numofConnectionUsers; //
-	
+	List numOfConnectionUsers; //
+
 public:
 	newConnection(List<string>); //:connection
-	deeteConnection(connection);
+	deleteConnection(connection);
 
 
 };
