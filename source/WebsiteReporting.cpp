@@ -1,6 +1,6 @@
 /**
 CS 441
-Website_Reporting.cpp
+WebsiteReporting.cpp
 Purpose: To retrieve and manipulate website anaylitic data.
 
 @author Sara Adra, Joshua Boone, Josiah Hayes, Alex Hoppe, Jordan Spinato

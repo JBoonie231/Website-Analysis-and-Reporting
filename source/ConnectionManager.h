@@ -10,18 +10,17 @@ using namespace std;
 
 /* Included Header Files */
 #include "Connection.h"
-#include "ConnectionManager"
 
 
 class ConnectionManager
 {
 protected:
-	vector<Connection> connections; // List of all connections
-	vector<string> hashIdentifiers; //
-	vector<int> numOfConnectionUsers; //
+	vector<Connection> connections;          // List of all connections
+	vector<string>     hashIdentifiers;      //
+	vector<int>        numOfConnectionUsers; //
 
 public:
 	newConnection(vector<Connection> &connections); //
-	deleteConnection(Connection);
+	deleteConnection(Connection connection);
 };
 #endif
