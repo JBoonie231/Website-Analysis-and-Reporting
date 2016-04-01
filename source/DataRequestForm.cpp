@@ -26,15 +26,14 @@ bool DataRequestForm :: getTable(string table)
   string contents;
   bool connectionState = false;
 
+  // Access Singleton for Connection Manager
+  conn = ConnectionManager::instance() -> newConnection(identifiersForConnMgr);
+
   // if connection exists save table JSON string
-  connMgr.newConnection(table);
-  contents = connection.getTableContents(table);
-
+  contents = conn.getTableContents(table);
   table = contents;
-
-
-
   connectionState = true;
+
 	return connectionState;
 
 }
@@ -42,9 +41,7 @@ bool DataRequestForm :: getTable(string table)
 
 DataRequestForm :: ~DataRequestForm()
 {
-  connMgr.deleteConnection(conn);
-
-
+  ConnectionManager::instance() -> deleteConnection(conn);
 }
 
 

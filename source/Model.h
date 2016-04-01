@@ -17,11 +17,11 @@ using namespace std;
 3- Do "lazy initialization" (creation on demand) in the accessor function
 4- Define all constructors to be protected or private
 5- Clients may only use the accessor function to manipulate the Singleton
-6- Inheritance can be supported, but static functions may not be overridden. 
-The base class must be declared a friend of the derived class 
+6- Inheritance can be supported, but static functions may not be overridden.
+The base class must be declared a friend of the derived class
 (in order to access the protected constructor).
 */
-
+ 
 class Model
 {
 
