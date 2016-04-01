@@ -27,13 +27,15 @@ Connection::Connection(/*vector<string> identifiers*/)
     databaseFile.open("Website_Database.txt");//change to depend on length of vector not the zero index
 }
 
-/*vector<string> vectorize(string table)
+vector<string> vectorize(string table)
 {
-  for(iterator it=table.begin(); it!=table.end(); ++it)
+  //for(string::iterator it=table.begin(); it!=table.end(); ++it)
+  for (int i=0; i<table.size(); i++)
   {
-    cout << *it <<endl;
+    //cout << *it <<endl;
+    cout<< table[i] <<endl;
   }
-}*/
+}
 
 string Connection::getTableContents(string tableName)
 {
@@ -57,7 +59,7 @@ string Connection::getTableContents(string tableName)
       break;
     }
   }
-  //vector<string> tableVector = vectorize(table);
+  vector<string> tableVector = vectorize(table);
   return table;
 }
 
