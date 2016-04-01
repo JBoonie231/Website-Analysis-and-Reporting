@@ -32,14 +32,13 @@ Function: Create User
 Input: User information to create an account
 Purpose: calls frunction create user from userAccount class
 */
-bool createUser(UserAccount newUser)
+bool Model :: createUser(string userName, string password, enum role)
 {
-  cout << "Create User: " << newUser << endl;
+  bool createUserSuccessful = false;
 
-  newUser.createUser(newUser);
-
-
-return true;
+  createUserSuccessful = userAccount.createUser(userName, password, role);
+  
+  return createUserSuccessful;
 
 } // end  createUser
 
@@ -49,12 +48,10 @@ Function: Delete User
 Input: User account to delete
 Purpose: calls frunction delete user from userAccount class
 */
-bool deleteUser(UserAccount account)
+bool Model:: deleteUser(string userName)
 {
 
-  cout << "Delete User" << account << endl;
-
-  userAccount.deleteUser(account);// send to user account class
+  userAccount.deleteUser(userName);// send to user account class
 
   return true;
 
@@ -66,11 +63,10 @@ Function: Load User
 Input: Username and password to validate and load the user
 Purpose: calls frunction  load user from userAccount class
 */
-bool loadUser(string username, string password, int role)
+bool Model :: loadUser(string username, string password)
 {
 
-  cout << "Username: " << username << "\nPassword: " << password << endl;
-  userAccount.loadUser(username, password, &role);
+  userAccount.loadUser(username, password);
 
   return true;
 
@@ -82,11 +78,13 @@ Function: getTable
 Input: table information to load
 Purpose: calls frunction get table from the data request form class
 */
-bool getTable (string table)
+string Model :: getTable (string table)
 {
-  dataRequestForm.getTable(table);
+  string returnedTable = " ";
 
-  return true;
+  returnedTable = dataRequestForm.getTable(table);
+
+  return returnedTable;
 }
 
 

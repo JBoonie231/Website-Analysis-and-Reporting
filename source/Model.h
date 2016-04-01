@@ -36,9 +36,9 @@ protected:
   Model();
 
 public:
-  bool createUser(UserAccount);
-  bool deleteUser(UserAccount);
-  bool loadUser(string, string,enum);
+  bool createUser(string, string, enum);
+  bool deleteUser(string);
+  bool loadUser(string, string);
   string getTable (string);
 
   // 2. Public Static Accessor
