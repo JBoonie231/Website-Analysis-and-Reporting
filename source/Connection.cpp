@@ -27,13 +27,20 @@ Connection::Connection(/*vector<string> identifiers*/)
     databaseFile.open("Website_Database.txt");//change to depend on length of vector not the zero index
 }
 
+/*vector<string> vectorize(string table)
+{
+  for(iterator it=table.begin(); it!=table.end(); ++it)
+  {
+    cout << *it <<endl;
+  }
+}*/
+
 string Connection::getTableContents(string tableName)
 {
   string line, line2;
   string table;
   transform(tableName.begin(),tableName.end(),tableName.begin(),::toupper);
   string tableNameLine = tableName+":";
-cout<<tableNameLine<<endl;
 
   while(getline(databaseFile, line))
   {
@@ -41,14 +48,17 @@ cout<<tableNameLine<<endl;
     if (!line.compare(tableNameLine))
     {
       table.append(line);
+      table.append("\n");
       while(getline(databaseFile, line2))
       {
-        table.append(line2);        
+        table.append(line2);
+        table.append("\n");        
       }
       break;
     }
   }
-    return table;
+  //vector<string> tableVector = vectorize(table);
+  return table;
 }
 
 //getRow
@@ -61,7 +71,7 @@ int main()
   string table = "visits";
   string table2 = conn.getTableContents(table);
   cout << table2 <<endl;
-
+  
  return 0;
 }
 
