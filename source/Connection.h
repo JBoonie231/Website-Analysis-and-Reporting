@@ -10,6 +10,8 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <cctype>
+#include <locale>
+#include <algorithm>
 
 using namespace std;
 
