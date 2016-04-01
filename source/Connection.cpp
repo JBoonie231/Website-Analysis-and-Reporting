@@ -7,8 +7,6 @@
 //#include <json.h>
 #include <fstream>
 #include <vector>
-#include <algorithm>
-#include <locale>
 // Included Header Files
 #include "Connection.h"
 #include <ctype.h>
@@ -41,7 +39,7 @@ string Connection::getTableContents(string tableName)
       table.append(line);
       while(getline(databaseFile, line2))
       {
-        table.append(line2);
+        table.append(line2);        
       }
       break;
     }
@@ -54,18 +52,17 @@ string Connection::getTableContents(string tableName)
 
 string toUpper(string lower)
 {
-  //char letter='';
-  string upper="";
+  char letter;
+  string upper;
 cout<< lower <<endl;
-  /*for(int i=0; i < lower.size(); i++)
+  for(int i=0; i < lower.size(); i++)
   {
     letter=lower[i];
 cout<< letter << " == ";
     upper[i] = toupper(letter);
 cout<< upper[i] <<endl;
-  }*/
-  transform(lower.begin(), lower.end(), lower.begin(), ::toupper);
-cout<< "upper="<<lower <<endl;
+  }
+cout<< "upper="<<upper <<endl;
   return upper;
 }
 
