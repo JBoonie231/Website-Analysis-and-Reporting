@@ -7,58 +7,110 @@
 #include <map>
 
 // Included Header Files
-#include "userAccount.h"
+#include "UserAccount.h"
 
 using namespace std;
 
-enum roles{ADMIN, GENERAL, ACCOUNT, ENGINEER, MARKETING};
 
-//call connection manager which creates new connection instance on initialization
-connectionManager connMgr();
+
 
 
 //loads user information via the connection class
-bool loadUser(userName, password);
+string UserAccount :: loadUser(string uname, string pwd)
 {
+	string tableName;
 	tableName = "user";
 
 	map<string,string> fieldValuePairs;
-	fieldValuePairs["userName"] = userName;
-	fieldValuePairs["password"] = password;
+	fieldValuePairs["userName"] = uname;
+	fieldValuePairs["password"] = pwd;
 
 	string userRow[2];
 
 	//query database for user role where userName and password exist
-	role = conn.selectRow(tableName, fieldValuePairs);
-	if (userRow) return true;
-	else return false;
+
+	/* leave out until the function is created
+	role = conn.getTableRow(tableName, fieldValuePairs);
+
+	*/
+	string account = uname + " " + pwd;
+	return account;
 }
 
+
 //creates user with parameters via the connection class
-bool createUser(userName, password, role);
+bool UserAccount :: createUser(string uname, string pwd, int rol)
 {
+	string tableName;
+	bool userRow = false;
 	tableName = "user";
 
-	map<string,string> fieldValuePairs;
-	fieldValuePairs["userName"] = userName;
-	fieldValuePairs["password"] = password;
-	fieldValuePairs["role"] = role;
+	/* Assign parameters to UserAccount attributes */
+	userName = uname;
+	password = pwd;
 
+	switch (rol)
+	{
+	case 0:
+		role = ADMIN;
+		break;
+	case 1: 
+		role = GENERAL;
+		break;
+	case 2: 
+		role = ACCOUNTANT;
+		break;
+	case 3:
+		role = ENGINEER;
+		break;
+	case 4:
+		role = MARKETING;
+		break;
+	default:
+		role = NONE;
+		break;
+	}
+
+
+	map<string,string> fieldValuePairs;
+	fieldValuePairs["userName"] = uname;
+	fieldValuePairs["password"] = pwd;
+	fieldValuePairs["role"] = rol;
+	
+	/* keep out until new function is created
 	userRow = conn.insertRow(userName, fieldValuePair);
-	if (userRow) return true;
-	else return false;
+	*/
+	if (userRow) 
+		return true;
+	else 
+		return false;
+	
 }
 
 //deletes user from the reporting database via the connection class
-bool deleteUser(userName);
+bool UserAccount ::deleteUser(string uname)
 {
+	bool userRow = false;
+	string tableName; 
 	tableName = "user";
 
+	/*
+	 leave out until new function is created 
 	userRow = conn.deleteRow(tableName, userName);
-	if (userRow) return true;
-	else return false;
+	*/
+
+	if (userRow) 
+		return true;
+	else 
+		return false;
+	
 }
 
+
+
+
+
+/*
 //Testing Area
 int main()
 {
@@ -70,5 +122,9 @@ int main()
 	loadUser(userName, password);
 	//deleteUser(userName);
 }
+
+*/
+
+
 
 #endif

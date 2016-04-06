@@ -17,16 +17,18 @@ class UserAccount
 
 protected:
 	string userName;
-	string passowrd;
-	enum role : int;
+	string password;
+	enum userRole {ADMIN, GENERAL, ACCOUNTANT, ENGINEER, MARKETING, NONE};
+	userRole role;
 	Connection conn;
 	ConnectionManager connMgr;
 
 
 public:
-	bool createUser(userName, passowrd, role);
-	bool deleteUser(userName);
-	bool loadUser(userName, passowrd, &role);
+	UserAccount();
+	bool createUser(string uname, string pwd, int rol);
+	bool deleteUser(string);
+	string loadUser(string uname, string pwd);
 };
 
 
