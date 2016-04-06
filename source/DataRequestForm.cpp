@@ -12,6 +12,8 @@ using namespace std;
 
 DataRequestForm::DataRequestForm()
 {
+	// Access Singleton for Connection Manager
+	conn = ConnectionManager::instance()->newConnection(identifiersForConnMgr);
 
 }
 
@@ -21,20 +23,15 @@ Function: Get Table
 Input: User information to create an account
 Purpose: calls frunction create user from userAccount class
 */
-bool DataRequestForm :: getTable(string table)
+string DataRequestForm :: getTable(string table)
 {
-  string contents;
+  string tableContents;
   bool connectionState = false;
 
-  // Access Singleton for Connection Manager
-  conn = ConnectionManager::instance() -> newConnection(identifiersForConnMgr);
-
   // if connection exists save table JSON string
-  contents = conn.getTableContents(table);
-  table = contents;
-  connectionState = true;
+  tableContents = conn.getTableContents(table);
 
-	return connectionState;
+	return tableContents;
 
 }
 

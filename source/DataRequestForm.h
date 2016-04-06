@@ -22,7 +22,7 @@ protected:
 
 public:
   DataRequestForm();
-	bool getTable(string);
+	string getTable(string tableName);
   ~DataRequestForm();
 
 };
