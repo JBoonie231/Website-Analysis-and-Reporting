@@ -41,7 +41,7 @@ int main()
 		case 0: 
 			view.displayLogIn();
 			controller.submitLogIn(username, password);
-			success = model->loadUser(username, password, role);
+			success = model->loadUser(username, password);
 
 			if (success)
 			{
