@@ -32,7 +32,7 @@ Function: Create User
 Input: User information to create an account
 Purpose: calls frunction create user from userAccount class
 */
-bool Model :: createUser(string userName, string password, enum role)
+bool Model :: createUser(string userName, string password, int role)
 {
   bool createUserSuccessful = false;
 
@@ -50,10 +50,11 @@ Purpose: calls frunction delete user from userAccount class
 */
 bool Model:: deleteUser(string userName)
 {
+  bool deleteUserSuccessful = false;
 
-  userAccount.deleteUser(userName);// send to user account class
+  deleteUserSuccessful = userAccount.deleteUser(userName);// send to user account class
 
-  return true;
+  return deleteUserSuccessful;
 
 } // end deleteUser
 
@@ -65,10 +66,14 @@ Purpose: calls frunction  load user from userAccount class
 */
 bool Model :: loadUser(string username, string password)
 {
+  string userInformation = "" ;
+  bool loadUserSuccessful = false;
 
-  userAccount.loadUser(username, password);
+  userInformation = userAccount.loadUser(username, password);
+  if (userInformation != "")
+    loadUserSuccessful = true;
 
-  return true;
+  return loadUserSuccessful;
 
 } // end loadUser
 

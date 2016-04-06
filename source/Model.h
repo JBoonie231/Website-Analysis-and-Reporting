@@ -36,10 +36,10 @@ protected:
   Model();
 
 public:
-  bool createUser(string, string, enum);
-  bool deleteUser(string);
-  bool loadUser(string, string);
-  string getTable (string);
+  bool createUser(string username, string password, int role);
+  bool deleteUser(string username);
+  bool loadUser(string username, string password);
+  string getTable (string tableName);
 
   // 2. Public Static Accessor
   static Model *instance();
