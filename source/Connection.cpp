@@ -19,12 +19,18 @@
 using namespace std;
 
 ifstream databaseFile;
-//vector<string> identifiers.push_back("Website_Database.txt");
-//string identifiers="Website_Database.txt";
 
-Connection::Connection(/*vector<string> identifiers*/)
+vector<string> identifiers.push_back("Website_Database.txt");
+string hashIdentifier="Website_Database.txt";
+
+Connection::Connection(vector<string> identifiers)
 {
     databaseFile.open("Website_Database.txt");//change to depend on length of vector not the zero index
+}
+
+bool equals(Connection conn)
+{
+    
 }
 
 vector<string> vectorize(string table)
@@ -63,9 +69,7 @@ string Connection::getTableContents(string tableName)
   return table;
 }
 
-//getRow
-//equals : compare the hashIdentifier value of two connections
-
+//testing area to run getTableContents()
 int main()
 {
   Connection conn;
