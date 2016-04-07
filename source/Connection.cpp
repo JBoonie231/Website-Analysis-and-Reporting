@@ -59,7 +59,7 @@ string Connection::getTableContents(string tableName)
       break;
     }
   }
-  vector<string> tableVector = vectorize(table);
+  //vector<string> tableVector = vectorize(table);
   return table;
 }
 
