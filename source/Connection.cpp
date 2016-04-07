@@ -15,27 +15,38 @@
 #include <stdio.h>
 #include <locale>
 #include <algorithm>
+#include <sqlite3.h>
 
 using namespace std;
 
 ifstream databaseFile;
 
-vector<string> identifiers.push_back("Website_Database.txt");
+vector<string> identifiers.push_back("Website_Database.txt"); // [fileName/DBName,&DatabaseAddress]
 string hashIdentifier="Website_Database.txt";
 
 Connection::Connection(vector<string> identifiers)
 {
-    databaseFile.open();//change to depend on length of vector not the zero index
+  setHashId(identifiers);
+  databaseFile.open();
+}
+
+void setHashId(vector<string> identifiers)
+{
+  for(int i=0; i<identifiers.size(); i++)
+  {
+    hashIdentifier = hashIdentifier.append(identifiers[i]);
+  }
 }
 
 string getHashId(Connection conn)
 {
-    
+  return hashIdentifer;
 }
 
 bool equals(Connection conn2)
 {
-    getHashId(conn2);
+  if (hashIdentifer == getHashId(conn2))return true;
+  else return false;
 }
 
 vector<string> vectorize(string table)
