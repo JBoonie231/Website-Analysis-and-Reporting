@@ -1,5 +1,5 @@
-#ifndef USER_ACCOUNT_CPP
-#define USER_ACCOUNT_CPP
+#ifndef CONNECTION_CPP
+#define CONNECTION_CPP
 
 // Libraries
 #include <iostream>
@@ -25,12 +25,17 @@ string hashIdentifier="Website_Database.txt";
 
 Connection::Connection(vector<string> identifiers)
 {
-    databaseFile.open("Website_Database.txt");//change to depend on length of vector not the zero index
+    databaseFile.open();//change to depend on length of vector not the zero index
 }
 
-bool equals(Connection conn)
+string getHashId(Connection conn)
 {
     
+}
+
+bool equals(Connection conn2)
+{
+    getHashId(conn2);
 }
 
 vector<string> vectorize(string table)
