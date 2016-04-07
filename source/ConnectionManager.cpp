@@ -40,7 +40,7 @@ Connection ConnectionManager::newConnection(vector<string> identifiers)
 	}
 
 	// If connection wasn't found, create connection and connection values.
-	connections.push_back(new Connection(identifiers));
+	connections.push_back(Connection temp_conn(identifiers));
 	hashIdentifiers.push_back(hashIdentifier);
 	numOfConnectionUsers.push_back(1);
 
