@@ -32,7 +32,7 @@ Function: Create User
 Input: User information to create an account
 Purpose: calls frunction create user from userAccount class
 */
-bool Model :: createUser(string userName, string password, int role)
+bool Model :: createUser(string userName, string password, string &role)
 {
   bool createUserSuccessful = false;
 

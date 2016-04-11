@@ -36,7 +36,7 @@ protected:
   Model();
 
 public:
-  bool createUser(string username, string password, int role);
+  bool createUser(string username, string password, string &role);
   bool deleteUser(string username);
   bool loadUser(string username, string password);
   string getTable (string tableName);
