@@ -1,63 +1,34 @@
-#ifndef CONNECTION_CPP
-#define CONNECTION_CPP
-
 // Libraries
 #include <iostream>
 #include <string>
 #include <string.h>
-//#include <json.h>
 #include <fstream>
 #include <vector>
-// Included Header Files
-#include "Connection.h"
-#include <ctype.h>
 #include <cctype>
-#include <stdio.h>
 #include <locale>
 #include <algorithm>
-#include <sqlite3.h>
+
+// Included Header Files
+#include <ctype.h>
+#include <stdio.h>
+#include "Connection.h"
+
 
 using namespace std;
 
 ifstream databaseFile;
 
-vector<string> identifiers.push_back("Website_Database.txt"); // [fileName/DBName,&DatabaseAddress]
-string hashIdentifier="Website_Database.txt";
+vector<string> identifiers;//.push_back("Website_Database.txt");
+string hashIdentifier="";
+bool sqlFile = false;
 
-Connection::Connection(vector<string> identifiers)
-{
-  setHashId(identifiers);
-  databaseFile.open();
-}
 
-void setHashId(vector<string> identifiers)
+bool Connection::equals(Connection conn2)
 {
-  for(int i=0; i<identifiers.size(); i++)
-  {
-    hashIdentifier = hashIdentifier.append(identifiers[i]);
-  }
-}
-
-string getHashId(Connection conn)
-{
-  return hashIdentifer;
-}
-
-bool equals(Connection conn2)
-{
-  if (hashIdentifer == getHashId(conn2))return true;
+  if (hashIdentifier == getHashId(conn2))return true;
   else return false;
 }
 
-vector<string> vectorize(string table)
-{
-  //for(string::iterator it=table.begin(); it!=table.end(); ++it)
-  for (int i=0; i<table.size(); i++)
-  {
-    //cout << *it <<endl;
-    cout<< table[i] <<endl;
-  }
-}
 
 string Connection::getTableContents(string tableName)
 {
@@ -68,7 +39,6 @@ string Connection::getTableContents(string tableName)
 
   while(getline(databaseFile, line))
   {
-    //need to omit whitespace for each line got to compare without the whitespace
     if (!line.compare(tableNameLine))
     {
       table.append(line);
@@ -81,22 +51,55 @@ string Connection::getTableContents(string tableName)
       break;
     }
   }
-  //vector<string> tableVector = vectorize(table);
-  return table;
+  return table; //returns a simple string
 }
+
+
+string Connection::getHashId(Connection conn)
+{
+  return hashIdentifier;
+}
+
+
+void Connection::setHashId(vector<string> identifiers)
+{
+  if (identifiers.size() > 1) sqlFile=true;
+  else sqlFile=false;
+
+  for(int i=0; i<identifiers.size(); i++)
+  {
+    hashIdentifier = hashIdentifier.append(identifiers[i]);
+  }
+}
+
+
+Connection::Connection(vector<string>& identifiers)
+{
+  setHashId(identifiers);
+
+  if(!sqlFile)
+  {
+    databaseFile.open("Website_Database.txt");//file connection
+  }
+  else
+  {
+    //sqlite connection
+  }
+}
+
 
 //testing area to run getTableContents()
 int main()
 {
-  Connection conn;
+  vector<string> fileId;
+  fileId.push_back("Website_Database.txt");
 
-  string table = "visits";
-  string table2 = conn.getTableContents(table);
-  cout << table2 <<endl;
+  Connection conn(fileId);
+
+  string tableInfo = "visits";
+  string table = conn.getTableContents(tableInfo);
+  cout << table <<endl;
   
- return 0;
+  return 0;
 }
 
-
-
-#endif
