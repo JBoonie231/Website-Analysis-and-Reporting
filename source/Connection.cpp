@@ -25,7 +25,7 @@ bool sqlFile = false;
 
 bool Connection::equals(Connection conn2)
 {
-  if (hashIdentifier == getHashId(conn2))return true;
+  if (getHashId() == conn2.getHashId())return true;
   else return false;
 }
 
@@ -55,7 +55,7 @@ string Connection::getTableContents(string tableName)
 }
 
 
-string Connection::getHashId(Connection conn)
+string Connection::getHashId()
 {
   return hashIdentifier;
 }
@@ -88,17 +88,36 @@ Connection::Connection(vector<string>& identifiers)
 }
 
 
-//testing area to run getTableContents()
+/*Testing main for running Connection class methods*/
 int main()
 {
+//-----------------------------------------------------------------------------------
+  //getTable() test
   vector<string> fileId;
   fileId.push_back("Website_Database.txt");
-
-  Connection conn(fileId);
+  Connection websiteConn(fileId);
 
   string tableInfo = "visits";
-  string table = conn.getTableContents(tableInfo);
+  string table = websiteConn.getTableContents(tableInfo);
   cout << table <<endl;
+
+//-----------------------------------------------------------------------------------
+  //getHashId() Test
+  fileId.pop_back();
+  fileId.push_back("User_Database.txt");
+  Connection userConn(fileId);
+  string websiteHashId = websiteConn.getHashId();
+  string userHashId = userConn.getHashId();
+
+//-----------------------------------------------------------------------------------
+  //equals() Test
+  bool same = websiteConn.equals(userConn);
+  string compare = "";
+  if (same) compare = "True";else compare = "False";
+  cout<< websiteHashId << " == " << userHashId << " : " << compare <<endl;
+  same = websiteConn.equals(websiteConn);
+  if (same) compare = "True";else compare = "False";
+  cout<< websiteHashId << " == " << websiteHashId << " : " << compare <<endl;
   
   return 0;
 }

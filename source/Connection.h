@@ -17,7 +17,7 @@ class Connection
   public:
   Connection(vector<string>& identifiers);
   string getTableContents (string table);
-  string getHashId(Connection conn);
+  string getHashId();
   bool equals(Connection conn2); //compares hashIdentifiers of 2 Connections
 };
 
