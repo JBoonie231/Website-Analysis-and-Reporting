@@ -88,7 +88,7 @@ Connection::Connection(vector<string>& identifiers)
 }
 
 
-/*Testing main for running Connection class methods*/
+/*//Testing main for running Connection class methods
 int main()
 {
 //-----------------------------------------------------------------------------------
@@ -120,5 +120,5 @@ int main()
   cout<< websiteHashId << " == " << websiteHashId << " : " << compare <<endl;
   
   return 0;
-}
+}*/
 
