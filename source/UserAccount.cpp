@@ -39,7 +39,7 @@ string UserAccount :: loadUser(string uname, string pwd)
 
 
 //creates user with parameters via the connection class
-bool UserAccount :: createUser(string uname, string pwd, int rol)
+bool UserAccount :: createUser(string uname, string pwd, string rol)
 {
 	string tableName;
 	bool userRow = false;
@@ -49,27 +49,17 @@ bool UserAccount :: createUser(string uname, string pwd, int rol)
 	userName = uname;
 	password = pwd;
 
-	switch (rol)
-	{
-	case 0:
+	if (rol == "IT")
 		role = ADMIN;
-		break;
-	case 1: 
+	else if (rol == "GENERAL")
 		role = GENERAL;
-		break;
-	case 2: 
+	else if (rol == "ACCOUNTANT")
 		role = ACCOUNTANT;
-		break;
-	case 3:
-		role = ENGINEER;
-		break;
-	case 4:
+	else if (rol == "MARKETING")
 		role = MARKETING;
-		break;
-	default:
-		role = NONE;
-		break;
-	}
+	else
+		role = NONE; 
+
 
 
 	map<string,string> fieldValuePairs;

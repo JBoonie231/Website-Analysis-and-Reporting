@@ -26,7 +26,7 @@ protected:
 
 public:
 	UserAccount();
-	bool createUser(string uname, string pwd, int rol);
+	bool createUser(string uname, string pwd, string rol);
 	bool deleteUser(string);
 	string loadUser(string uname, string pwd);
 };
