@@ -12,8 +12,9 @@ using namespace std;
 
 DataRequestForm::DataRequestForm()
 {
+	connMgr = ConnectionManager::instance();
+	conn = connMgr -> newConnection(identifiersForConnMgr);
 	// Access Singleton for Connection Manager
-	conn = ConnectionManager::instance()->newConnection(identifiersForConnMgr);
 
 }
 
