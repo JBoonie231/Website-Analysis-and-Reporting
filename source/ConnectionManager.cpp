@@ -35,7 +35,7 @@ Connection * ConnectionManager::newConnection(vector<string> identifiers)
 		if(identifiers.at(i) == hashIdentifier)
 		{
 			numOfConnectionUsers.at(i) = numOfConnectionUsers.at(i) + 1;
-			return connections.at(i);
+			return &connections.at(i);
 		}
 	}
 
@@ -45,7 +45,7 @@ Connection * ConnectionManager::newConnection(vector<string> identifiers)
 	hashIdentifiers.push_back(hashIdentifier);
 	numOfConnectionUsers.push_back(1);
 
-	return connections.back();
+	return &connections.back();
 }
 
 //Input: deletes a connection
