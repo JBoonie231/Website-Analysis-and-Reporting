@@ -15,7 +15,7 @@ class DataRequestForm
 {
 
 protected:
-	Connection conn;
+	Connection *conn;
 	ConnectionManager *connMgr;
 	string table; // json string
   vector <string> identifiersForConnMgr;
