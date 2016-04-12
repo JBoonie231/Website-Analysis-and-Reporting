@@ -19,7 +19,7 @@ using namespace std;
 
 //Input: list of strings
 //Purpose:  creates a new connection between user and db
-Connection ConnectionManager::newConnection(vector<string> identifiers)
+Connection * ConnectionManager::newConnection(vector<string> identifiers)
 {
 	// Concatinate identifier values into one hash value
 	string hashIdentifier = "";
@@ -50,7 +50,7 @@ Connection ConnectionManager::newConnection(vector<string> identifiers)
 
 //Input: deletes a connection
 //Purpose: disconnects user from db
-bool ConnectionManager::deleteConnection(Connection connection)
+bool ConnectionManager::deleteConnection(Connection& connection)
 {
 	// Search for connection
 	for (int i = 0; i < connections.size(); i++)
