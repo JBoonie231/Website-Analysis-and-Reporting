@@ -10,7 +10,6 @@
 // Libraries
 #include <string>
 #include <iostream>
-#include <array>
 
 using namespace std;
 
