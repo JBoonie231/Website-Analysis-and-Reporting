@@ -30,7 +30,7 @@ string DataRequestForm :: getTable(string table)
   bool connectionState = false;
 
   // if connection exists save table JSON string
-  tableContents = conn.getTableContents(table);
+  tableContents = conn -> getTableContents(table);
 
 	return tableContents;
 
