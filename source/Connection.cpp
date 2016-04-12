@@ -76,11 +76,10 @@ void Connection::setHashId(vector<string> identifiers)
 Connection::Connection(vector<string>& identifiers)
 {
   setHashId(identifiers);
+  char* hashId;
+  hashId = &hashIdentifier[0];
 
-  if(!sqlFile)
-  {
-    databaseFile.open("Website_Database.txt");//file connection
-  }
+  if(!sqlFile) databaseFile.open(hashId);//file connection
   else
   {
     //sqlite connection
@@ -88,37 +87,46 @@ Connection::Connection(vector<string>& identifiers)
 }
 
 
-/*//Testing main for running Connection class methods
+Connection::~Connection()
+{
+  if(!sqlFile) databaseFile.close();
+}
+
+
+//Testing main for running Connection class methods
 int main()
 {
-//-----------------------------------------------------------------------------------
-  //getTable() test
-  vector<string> fileId;
-  fileId.push_back("Website_Database.txt");
-  Connection websiteConn(fileId);
+  int test=0;
+  if(test)
+  { 
+    //-----------------------------------------------------------------------------------
+      //getTable() test
+      vector<string> fileId;
+      fileId.push_back("Website_Database.txt");
+      Connection websiteConn(fileId);
 
-  string tableInfo = "visits";
-  string table = websiteConn.getTableContents(tableInfo);
-  cout << table <<endl;
+      string tableInfo = "visits";
+      string table = websiteConn.getTableContents(tableInfo);
+      cout << table <<endl;
 
-//-----------------------------------------------------------------------------------
-  //getHashId() Test
-  fileId.pop_back();
-  fileId.push_back("User_Database.txt");
-  Connection userConn(fileId);
-  string websiteHashId = websiteConn.getHashId();
-  string userHashId = userConn.getHashId();
+    //-----------------------------------------------------------------------------------
+      //getHashId() Test
+      fileId.pop_back();
+      fileId.push_back("User_Database.txt");
+      Connection userConn(fileId);
+      string websiteHashId = websiteConn.getHashId();
+      string userHashId = userConn.getHashId();
 
-//-----------------------------------------------------------------------------------
-  //equals() Test
-  bool same = websiteConn.equals(userConn);
-  string compare = "";
-  if (same) compare = "True";else compare = "False";
-  cout<< websiteHashId << " == " << userHashId << " : " << compare <<endl;
-  same = websiteConn.equals(websiteConn);
-  if (same) compare = "True";else compare = "False";
-  cout<< websiteHashId << " == " << websiteHashId << " : " << compare <<endl;
-  
+    //-----------------------------------------------------------------------------------
+      //equals() Test
+      bool same = websiteConn.equals(userConn);
+      string compare = "";
+      if (same) compare = "True";else compare = "False";
+      cout<< websiteHashId << " == " << userHashId << " : " << compare <<endl;
+      same = websiteConn.equals(websiteConn);
+      if (same) compare = "True";else compare = "False";
+      cout<< websiteHashId << " == " << websiteHashId << " : " << compare <<endl;
+  }
   return 0;
-}*/
+}
 
