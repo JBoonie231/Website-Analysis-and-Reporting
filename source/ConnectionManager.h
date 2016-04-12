@@ -23,7 +23,7 @@ class ConnectionManager
 	ConnectionManager();
 
 public:
-	Connection newConnection(vector<string> identifiers); //
+	Connection * newConnection(vector<string> identifiers); //
 	bool deleteConnection(Connection& connection);
 	static ConnectionManager *instance()
 	{
