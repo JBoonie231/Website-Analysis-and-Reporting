@@ -10,11 +10,13 @@
 
 using namespace std;
 
-DataRequestForm::DataRequestForm()
+DataRequestForm::DataRequestForm() : conn(identifiersForConnMgr)
 {
+	connectionName = "User_Database.txt";
+
 	connMgr = ConnectionManager::instance();
-	conn = connMgr -> newConnection(identifiersForConnMgr);
-	// Access Singleton for Connection Manager
+	identifiersForConnMgr.push_back(connectionName);
+	connPtr = connMgr -> newConnection(identifiersForConnMgr);
 
 }
 
@@ -27,19 +29,22 @@ Purpose: calls frunction create user from userAccount class
 string DataRequestForm :: getTable(string table)
 {
   string tableContents;
-  bool connectionState = false;
+  tableString = tableContents;
 
   // if connection exists save table JSON string
-  tableContents = conn -> getTableContents(table);
+  tableContents = connPtr -> getTableContents(table);
+  tableString = tableContents;
 
-	return tableContents;
+  return tableContents;
 
 }
 
 
 DataRequestForm :: ~DataRequestForm()
 {
-  ConnectionManager::instance() -> deleteConnection(conn);
+	bool connectionDeleted = false;
+	connectionDeleted = connMgr->deleteConnection(conn);
+
 }
 
 
