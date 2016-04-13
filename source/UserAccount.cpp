@@ -12,8 +12,9 @@ using namespace std;
 
 
 // confused why its on the same line but it prevented an error
-UserAccount :: UserAccount(): role(), connPtr(nullptr), conn(identifierForConnection), connMgr(nullptr)
+UserAccount :: UserAccount(): role(), connPtr(NULL), conn(identifierForConnection), connMgr(NULL)
 {
+	connMgr = ConnectionManager::instance();
 	tableName = "users";
 	connectionName = "User_Database.txt";
 	identifierForConnection.push_back(connectionName);
@@ -27,7 +28,7 @@ string UserAccount :: loadUser(string uname, string pwd)
 {
 	string tableName;
 	string connectionName;
-	string tableContents = "EMPTY";
+	string tableContents;
 
 	tableContents = connPtr->getTableContents(tableName);
 
