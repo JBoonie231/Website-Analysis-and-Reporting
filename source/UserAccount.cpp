@@ -1,6 +1,11 @@
 #ifndef USER_ACCOUNT_CPP
 #define USER_ACCOUNT_CPP
 
+//******To Compile on Linux must do : 
+// must include model.cpp and commandline.cpp in the WEbsite reporting
+// add ConnectionManager * ConnectionManager :: s_instance = 0; to ConnectionManager.cpp
+// add default constructor in ConnectionManager.cpp
+
 // Libraries
 #include <iostream>
 #include <string>
