@@ -20,14 +20,19 @@ protected:
 	string password;
 	enum userRole {ADMIN, GENERAL, ACCOUNTANT, ENGINEER, MARKETING, NONE};
 	userRole role;
+	string tableName;
+	string connectionName;
+	Connection *connPtr;
 	Connection conn;
-	ConnectionManager connMgr;
+	ConnectionManager *connMgr;
+	vector<string> identifierForConnection;
 
 
 public:
 	UserAccount();
+	~UserAccount();
 	bool createUser(string uname, string pwd, string rol);
-	bool deleteUser(string);
+	bool deleteUser(string uname);
 	string loadUser(string uname, string pwd);
 };
 
