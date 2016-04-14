@@ -92,7 +92,7 @@ Connection::~Connection()
   if(!sqlFile) databaseFile.close();
 }
 
-
+/*
 //Testing main for running Connection class methods
 int main()
 {
@@ -129,4 +129,4 @@ int main()
   }
   return 0;
 }
-
+*/

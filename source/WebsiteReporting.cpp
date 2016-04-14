@@ -20,10 +20,10 @@ int main()
 {
 	Model          *model;
 	Commandline_UI view;
-	Commandline_UI controller = view;
+	Commandline_UI controller;
 
 	model      = Model::instance();
-	
+
 	int state  = 0;
 
 	while (true)

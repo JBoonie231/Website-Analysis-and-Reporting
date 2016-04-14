@@ -25,13 +25,13 @@ class ConnectionManager
 public:
 	Connection * newConnection(vector<string> identifiers); //
 	bool deleteConnection(Connection& connection);
-	static ConnectionManager *instance()
-	{
+	static ConnectionManager *instance();
+	/*{
 		if (!s_instance)
 		{
-			s_instance = new ConnectionManager;
+			s_instance = new ConnectionManager();
 		}
 		return s_instance;
-	}
+	}*/
 };
 #endif

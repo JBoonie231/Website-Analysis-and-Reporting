@@ -17,6 +17,11 @@ Purpose: Manage unique connections to database data.
 
 using namespace std;
 
+ConnectionManager *ConnectionManager::s_instance = 0;
+
+ConnectionManager::ConnectionManager()
+{}
+
 //Input: list of strings
 //Purpose:  creates a new connection between user and db
 Connection * ConnectionManager::newConnection(vector<string> identifiers)
@@ -74,3 +79,13 @@ bool ConnectionManager::deleteConnection(Connection& connection)
 	}
 	return false;
 }
+
+ConnectionManager *ConnectionManager::instance()
+{
+	if (!s_instance)
+	{
+		s_instance = new ConnectionManager();
+	}
+	return s_instance;
+}
+
