@@ -23,7 +23,7 @@ protected:
 	string tableName;
 	string connectionName;
 	Connection *connPtr;
-	Connection conn;
+	//Connection conn;
 	ConnectionManager *connMgr;
 	vector<string> identifierForConnection;
 

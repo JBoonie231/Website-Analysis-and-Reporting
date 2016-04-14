@@ -10,14 +10,15 @@
 
 using namespace std;
 
-DataRequestForm::DataRequestForm() : conn(identifiersForConnMgr)
+DataRequestForm::DataRequestForm() //: conn(identifiersForConnMgr)
 {
-	connectionName = "User_Database.txt";
+	//cout << "DataRequestForm called" << endl;
+	connectionName = "Website_Database.txt"; //"C:\\Users\\Joshua Boone\\Documents\\GitHub\\Website - Analysis - and - Reporting\\source\\Website_Database.txt";
 
 	connMgr = ConnectionManager::instance();
 	identifiersForConnMgr.push_back(connectionName);
-	connPtr = connMgr -> newConnection(identifiersForConnMgr);
-
+	connPtr = connMgr->newConnection(identifiersForConnMgr);
+	//cout << "DataRequestForm exited" << endl;
 }
 
 
@@ -26,25 +27,31 @@ Function: Get Table
 Input: User information to create an account
 Purpose: calls frunction create user from userAccount class
 */
-string DataRequestForm :: getTable(string table)
+string DataRequestForm::getTable(string tableName)
 {
   string tableContents;
-  tableString = tableContents;
 
   // if connection exists save table JSON string
-  tableContents = connPtr -> getTableContents(table);
-  tableString = tableContents;
+  //tableContents = "Here's your table contents!";
+  tableContents = connPtr->getTableContents(tableName);
+  //setTableString(tableContents);
 
   return tableContents;
 
 }
-
+/*
+void DataRequestForm::setTableString(string tString)
+{
+	tableString = tString;
+}
+*/
 
 DataRequestForm :: ~DataRequestForm()
 {
+	//cout << "DataRequestForm destructor called" << endl;
 	bool connectionDeleted = false;
-	connectionDeleted = connMgr->deleteConnection(conn);
-
+	connectionDeleted = connMgr->deleteConnection(*connPtr);
+	//cout << "DataRequestForm destructor exited" << endl;
 }
 
 

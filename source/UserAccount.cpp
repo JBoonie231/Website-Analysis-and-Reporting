@@ -17,26 +17,28 @@ using namespace std;
 
 
 // confused why its on the same line but it prevented an error
-UserAccount :: UserAccount(): role(), connPtr(NULL), conn(identifierForConnection), connMgr(NULL)
+UserAccount::UserAccount()//: role(), connPtr(NULL), conn(identifierForConnection), connMgr(NULL)
 {
+	//cout << "UserAccount called" << endl;
 	connMgr = ConnectionManager::instance();
 	tableName = "users";
-	connectionName = "User_Database.txt";
+	connectionName = "User_Database.txt"; //"C:\\Users\\Joshua Boone\\Documents\\GitHub\\Website - Analysis - and - Reporting\\source\\User_Database.txt";
 	identifierForConnection.push_back(connectionName);
 	connPtr = connMgr->newConnection(identifierForConnection);
-
+	//cout << "UserAccount exited" << endl;
 }
 
 
 //loads user information via the connection class
 string UserAccount :: loadUser(string uname, string pwd)
 {
-	string tableName;
-	string connectionName;
+	string tableName = "USERS";
+	//string connectionName;
 	string tableContents;
 
+	//tableContents = "You're logged in!";
 	tableContents = connPtr->getTableContents(tableName);
-
+	//cout << "tableContents = " << tableContents << endl;
 	return tableContents;	
 }
 
@@ -97,10 +99,10 @@ bool UserAccount ::deleteUser(string uname)
 
 UserAccount::~UserAccount()
 {
+	//cout << "UserAccount destructor called" << endl;
 	bool connectionDeleted = false;
-
-	connectionDeleted = connMgr->deleteConnection(conn);
-
+	connectionDeleted = connMgr->deleteConnection(*connPtr);
+	//cout << "UserAccount destructor  exited" << endl;
 }
 
 

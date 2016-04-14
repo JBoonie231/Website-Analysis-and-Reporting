@@ -14,9 +14,9 @@ using namespace std;
 class DataRequestForm
 {
 
-protected:
+private:
 	Connection *connPtr;
-	Connection conn;
+	//Connection conn;
 	ConnectionManager *connMgr;
 	string connectionName;
 	string tableString; // json string
@@ -25,7 +25,8 @@ protected:
 
 public:
   DataRequestForm();
-	string getTable(string tableName);
+  string getTable(string tableName);
+  void setTableString(string tString);
   ~DataRequestForm();
 
 };

@@ -9,6 +9,7 @@ Purpose: To retrieve and manipulate website anaylitic data.
 
 // Libraries
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -21,7 +22,7 @@ int main()
 	Model          *model;
 	Commandline_UI view;
 	Commandline_UI controller;
-
+	
 	model      = Model::instance();
 
 	int state  = 0;
@@ -32,7 +33,7 @@ int main()
 		string password;
 		string role;
 		string tableName;
-		string table;
+		string table = "";
 		bool   success;
 
 		switch (state)

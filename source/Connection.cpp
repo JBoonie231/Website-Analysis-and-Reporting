@@ -32,6 +32,11 @@ bool Connection::equals(Connection conn2)
 
 string Connection::getTableContents(string tableName)
 {
+  databaseFile.open(getHashId());
+
+  if (!databaseFile)
+    return "not connected";
+
   string line, line2;
   string table;
   transform(tableName.begin(),tableName.end(),tableName.begin(),::toupper);
@@ -51,6 +56,7 @@ string Connection::getTableContents(string tableName)
       break;
     }
   }
+  databaseFile.close();
   return table; //returns a simple string
 }
 
@@ -69,26 +75,30 @@ void Connection::setHashId(vector<string> identifiers)
   for(int i=0; i<identifiers.size(); i++)
   {
     hashIdentifier = hashIdentifier.append(identifiers[i]);
+	//cout << "hashIdentifier = " << hashIdentifier << endl;
   }
 }
 
 
 Connection::Connection(vector<string>& identifiers)
 {
+  //cout << "Connection called" << endl;
   setHashId(identifiers);
   char* hashId;
   hashId = &hashIdentifier[0];
 
-  if(!sqlFile) databaseFile.open(hashId);//file connection
+  /*if(!sqlFile) databaseFile.open(hashId);//file connection
   else
   {
-    //sqlite connection
-  }
+	  //sqlite connection
+  }*/
+  //cout << getTableContents("USERS") << endl;
 }
 
 
 Connection::~Connection()
 {
+  //cout << "Connection destructor called  |  " << getHashId() << endl;
   if(!sqlFile) databaseFile.close();
 }
 

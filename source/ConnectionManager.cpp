@@ -10,6 +10,7 @@ Purpose: Manage unique connections to database data.
 // Libraries
 #include <string>
 #include <vector>
+#include <iostream>
 
 // Included Header Files
 #include "ConnectionManager.h"
@@ -26,31 +27,36 @@ ConnectionManager::ConnectionManager()
 //Purpose:  creates a new connection between user and db
 Connection * ConnectionManager::newConnection(vector<string> identifiers)
 {
+	//cout << "newConnection called" << endl;
 	// Concatinate identifier values into one hash value
 	string hashIdentifier = "";
 	for (int i = 0; i < identifiers.size() ;i++)
 	{
 		hashIdentifier += identifiers.at(i);
 	}
-
+	//cout << "hashIdentifier = " << hashIdentifier << endl;
 	// Search for connection
-	for(int i = 0; i < identifiers.size() ;i++)
+	for(int i = 0; i < hashIdentifiers.size() ;i++)
 	{
 		// If connection exists, return it
-		if(identifiers.at(i) == hashIdentifier)
+		if(hashIdentifiers.at(i) == hashIdentifier)
 		{
 			numOfConnectionUsers.at(i) = numOfConnectionUsers.at(i) + 1;
-			return &connections.at(i);
+			return connections.at(i);
 		}
 	}
 
 	// If connection wasn't found, create connection and connection values.
-	Connection temp_conn (identifiers);
+	//cout << "temp_conn about to be allocated" << endl;
+	Connection *temp_conn = new Connection (identifiers);
+	//cout << "temp_conn allocated" << endl;
+	//cout << "connections.size =" << connections.size() << endl;
 	connections.push_back(temp_conn);
+	//cout << "temp_conn pushed into list" << endl;
 	hashIdentifiers.push_back(hashIdentifier);
 	numOfConnectionUsers.push_back(1);
-
-	return &connections.back();
+	//cout << "newConnection exited" << endl;
+	return connections.back();
 }
 
 //Input: deletes a connection
@@ -60,7 +66,7 @@ bool ConnectionManager::deleteConnection(Connection& connection)
 	// Search for connection
 	for (int i = 0; i < connections.size(); i++)
 	{
-		if(connections.at(i).equals(connection))
+		if((*connections.at(i)).equals(connection))
 		{
 			// If the connection has more than one user, decrement the number of users
 			if(numOfConnectionUsers.at(i) > 1)

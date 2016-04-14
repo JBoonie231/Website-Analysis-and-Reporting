@@ -29,9 +29,8 @@ private:
   // 1. Private Static attribute
   static Model *inst;
 
-protected:
-  UserAccount userAccount;
-  DataRequestForm dataRequestForm;
+  UserAccount *userAccount;
+  DataRequestForm *dataRequestForm;
   // 4. protected constructor
   Model();
 

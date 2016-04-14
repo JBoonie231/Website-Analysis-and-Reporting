@@ -12,7 +12,10 @@ using namespace std;
 
 Model::Model()
 {
-
+	//cout << "Model called" << endl;
+	userAccount = new UserAccount();
+	dataRequestForm = new DataRequestForm();
+	//cout << "Model exited" << endl;
 }
 
 Model* Model::inst = 0;
@@ -20,8 +23,13 @@ Model* Model::inst = 0;
 // initialize the instance for singleton
 Model *Model::instance()
 {
-  if (inst = 0)
+  //cout << "Model::instance called" << endl;
+  if (!inst)
+  {
+    //cout << "Model::instance being set" << endl;
     inst = new Model();
+  }
+  //cout << "Model::instance exited" << endl;
   return inst;
 
 }
@@ -36,7 +44,7 @@ bool Model :: createUser(string userName, string password, string &role)
 {
   bool createUserSuccessful = false;
 
-  createUserSuccessful = userAccount.createUser(userName, password, role);
+  createUserSuccessful = userAccount->createUser(userName, password, role);
   
   return createUserSuccessful;
 
@@ -52,7 +60,7 @@ bool Model:: deleteUser(string userName)
 {
   bool deleteUserSuccessful = false;
 
-  deleteUserSuccessful = userAccount.deleteUser(userName);// send to user account class
+  deleteUserSuccessful = userAccount->deleteUser(userName);// send to user account class
 
   return deleteUserSuccessful;
 
@@ -69,7 +77,7 @@ bool Model :: loadUser(string username, string password)
   string userInformation = "" ;
   bool loadUserSuccessful = false;
 
-  userInformation = userAccount.loadUser(username, password);
+  userInformation = userAccount->loadUser(username, password);
   if (userInformation != "")
     loadUserSuccessful = true;
 
@@ -85,9 +93,9 @@ Purpose: calls frunction get table from the data request form class
 */
 string Model :: getTable (string table)
 {
-  string returnedTable = " ";
+  string returnedTable = "";
 
-  returnedTable = dataRequestForm.getTable(table);
+  returnedTable = dataRequestForm->getTable(table);
 
   return returnedTable;
 }
