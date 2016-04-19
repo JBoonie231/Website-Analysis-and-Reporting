@@ -32,7 +32,7 @@ bool Connection::equals(Connection conn2)
 
 string Connection::getTableContents(string tableName)
 {
-  databaseFile.open(getHashId());
+  databaseFile.open(getHashId().c_str());
 
   if (!databaseFile)
     return "not connected";
