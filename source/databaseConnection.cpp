@@ -1,75 +1,62 @@
 #include <iostream>
-#include "/usr/include/sqlite3.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-// g++ AccessTableEmployee.cpp -lsqlite3
-
+#include <sqlite3.h>
+#include "databaseConnection.h"
 using namespace std;
 
-static int callback(void *NotUsed, int argc, char **argv, char **azColName)
-{
-  int i;
-  cout << "Number of args= " << argc << endl;
 
-  for(i=0; i<argc; i++)
+static int callback(void *NotUsed, int argc, char **argv, char **szColName)
+{
+  for(int i = 0; i < argc; i++)
   {
-     cout << azColName[i] << " = " << (argv[i] ? argv[i] : "NULL") << endl;
+    std::cout << szColName[i] << " = " << argv[i] << std::endl;
   }
-  cout << endl;
+  std::cout << "\n";
   return 0;
 }
 
-int main(int argc, char **argv)
+
+void getTableContent()
 {
-  sqlite3 *db;       // Declare pointer to sqlite database structure
-  char *zErrMsg = 0;
+  sqlite3 *db;
+  char *szErrMsg = 0;
 
-  // Open Database 
-
-  int rc = sqlite3_open("/tmp/bedrock.db", &db);
-  if( rc )
+  // open database
+  int rc = sqlite3_open("Sqlite_Test.db", &db);
+  if(rc)
   {
-    cerr << "Can't open database: " << sqlite3_errmsg(db) << endl;
+    std::cout << "Can't open database\n";
+  } else {
+    std::cout << "Open database successfully\n";
+  }
+
+  // prepare our sql statements
+  const char *pSQL[6];
+  pSQL[0] = "CREATE TABLE Employee(Firstname varchar(30), Lastname varchar(30), Age smallint)";
+  pSQL[1] = "INSERT INTO Employee(Firstname, Lastname, Age) VALUES ('Woody', 'Alan', 45)";
+  pSQL[2] = "INSERT INTO Employee(Firstname, Lastname, Age) VALUES ('Micheal', 'Bay', 38)";
+  pSQL[3] = "SELECT * FROM Employee";
+
+  // execute sql
+  for(int i = 3; i < 4; i++)
+  {
+    rc = sqlite3_exec(db, pSQL[i], callback, 0, &szErrMsg);
+    if(rc != SQLITE_OK)
+    {
+      std::cout << "SQL Error: " << szErrMsg << std::endl;
+      sqlite3_free(szErrMsg);
+      break;
+    }
+  }
+
+  // close database
+  if(db)
+  {
     sqlite3_close(db);
-    exit(1);
   }
-
-  // Insert data into database
-
-  const char *zSql = "INSERT INTO employee(Name, Dept, jobTitle) VALUES('Barney Rubble','Sales','Neighbor')";
-
-  sqlite3_stmt *ppStmt;
-  const char **pzTail;
-
-  if( sqlite3_prepare_v2(db, zSql, strlen(zSql)+1, &ppStmt, pzTail) != SQLITE_OK )
-  {
-      cerr << "db error: " << sqlite3_errmsg(db) << endl;
-  }
-
-  if(ppStmt)
-  {
-      sqlite3_step(ppStmt);
-      sqlite3_finalize(ppStmt);
-      sqlite3_exec(db, "COMMIT", NULL, NULL, NULL);
-  }
-  else
-  {
-      cerr << "Error: ppStmt is NULL" << endl;
-  }
-
-  // Select from database 
-
-  rc = sqlite3_exec(db,"select * from employee", callback, 0, &zErrMsg);
-  if( rc!=SQLITE_OK )
-  {
-      cerr << "SQL error: " << zErrMsg << endl;
-      sqlite3_free(zErrMsg);
-  }
-
-  // Close
-
-  sqlite3_close(db);
-  return 0;
 }
 
+
+int main()
+{
+  getTableContent();
+}

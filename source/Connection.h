@@ -1,26 +1,18 @@
 #ifndef CONNECTION_H
 #define CONNECTION_H
-#include <vector>
 
 using namespace std;
 
-
 class Connection
 {
-  private:
-  bool sqlFile; //flag to ID file type
-  void setHashId(vector<string> identifiers);
-
   protected:
-  vector<string> identifiers; //identifiers of specific connection
-  string hashIdentifier; //appended values of identifiers[]
+  virtual void setHashId(vector<string> identifiers) = 0;
+  vector<string> identifiers;
+  string hashIdentifier;
 
   public:
-  Connection(vector<string>& identifiers);
-  ~Connection();
-  string getTableContents (string table);
-  string getHashId();
-  bool equals(Connection conn2); //compares hashIdentifiers of 2 Connections
+  virtual string getHashId() = 0;
+  virtual string getTableContents(string table) = 0;
 };
 
 #endif
