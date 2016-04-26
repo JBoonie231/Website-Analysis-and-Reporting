@@ -1,0 +1,11 @@
+# Make file for Website Reporting application
+# Software Engineering CS 441
+
+
+
+build: websiteReporting.cpp
+	g++ -o main Commandline_UI.cpp ConnectionManager.cpp DataRequestForm.cpp Model.cpp UserAccount.cpp WebsiteReporting.cpp databaseConnection.cpp jsoncpp.cpp textFileConnection.cpp testConnectionClasses.cpp
+
+clean:
+	rm main
+
