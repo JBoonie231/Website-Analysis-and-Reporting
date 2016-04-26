@@ -3,7 +3,7 @@
 
 
 
-build: websiteReporting.cpp
+build: 
 	g++ -o main Commandline_UI.cpp ConnectionManager.cpp DataRequestForm.cpp Model.cpp UserAccount.cpp WebsiteReporting.cpp databaseConnection.cpp jsoncpp.cpp textFileConnection.cpp testConnectionClasses.cpp
 
 clean:
