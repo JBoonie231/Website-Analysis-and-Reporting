@@ -32,14 +32,35 @@ UserAccount::UserAccount()//: role(), connPtr(NULL), conn(identifierForConnectio
 //loads user information via the connection class
 string UserAccount :: loadUser(string uname, string pwd)
 {
+
+
+	string checkUsername = "username to check";
+	string checkPassword = "password to check";
 	string tableName = "USERS";
-	//string connectionName;
-	string tableContents;
+	string tableContents = "table of contents";
 
 	//tableContents = "You're logged in!";
 	tableContents = connPtr->getTableContents(tableName);
+	
+	/* parse table contents to get checkUsername and checkPassword*/
+	
+	if (uname == checkUsername)
+	{
+		cout << "username correct" << endl;
+
+		if (pwd == checkPassword)
+		{
+			cout << "password check correct" << endl;
+			cout << "user is valid" << endl;
+			return tableContents;
+		}
+	}
+
+	tableContents = "ERROR. User not found";
+	cout << "User not found" << endl;
+	return tableContents;
+
 	//cout << "tableContents = " << tableContents << endl;
-	return tableContents;	
 }
 
 
@@ -47,53 +68,70 @@ string UserAccount :: loadUser(string uname, string pwd)
 bool UserAccount :: createUser(string uname, string pwd, string rol)
 {
 	string tableName;
-	bool userRow = false;
+	bool createNewUser = false;
+	string usernameCheck = "parsedUserName";
+	string passwordCheck = "parsedPassword";
 
+	// parse myself or use the parser.. TBD
+	if (uname == usernameCheck)
+	{
+		cout << "Username already exists" << endl;
 
-	/* Assign parameters to UserAccount attributes */
-	userName = uname;
-	password = pwd;
-
-	if (rol == "IT")
-	{
-		role = ADMIN;
-		userRow = true;
-	}
-	else if (rol == "GENERAL")
-	{
-		role = GENERAL;
-		userRow = true;
-	}
-
-	else if (rol == "ACCOUNTANT")
-	{
-		role = ACCOUNTANT;
-		userRow = true;
-	}
-	
-	else if (rol == "MARKETING")
-	{
-		role = MARKETING;
-		userRow = true;
+		if (pwd == passwordCheck)
+		{
+			cout << "Username and password are a match" << endl;
+			cout << "Account already exists" << endl;
+		}	
+		cout << "password was not correct" << endl;
 	}
 
 	else
-		role = NONE; 
+	{
+		/* Assign parameters to UserAccount attributes */
+		userName = uname;
+		password = pwd;
 
-	return userRow;	
+		if (rol == "IT")
+			role = ADMIN;
+		else if (rol == "GENERAL")
+			role = GENERAL;
+		else if (rol == "ACCOUNTANT")
+			role = ACCOUNTANT;
+		else if (rol == "MARKETING")
+			role = MARKETING;
+		else
+			role = NONE;
+	
+		createNewUser = true;
+	}
+
+	return createNewUser;	
 }
 
 //deletes user from the reporting database via the connection class
 bool UserAccount ::deleteUser(string uname)
 {
-	bool userRow = false;
+	bool userDeleted = false;
+	string userToDelete = "deleteUser";
+
+	if (uname == userToDelete)
+	{
+		cout << "Delete this user" << endl;
+		userDeleted = true;
+	}
+	else
+	{
+		cout << "user does not exist" << endl;
+		userDeleted = false;
+
+	}
 	
 	/*
 	 leave out until new function is created 
 	userRow = conn.deleteRow(tableName, userName);
 	*/
 
-	return userRow;
+	return userDeleted;
 	
 }
 
