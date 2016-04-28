@@ -19,7 +19,7 @@ class ConnectionManager
 	vector<Connection*> connections;          // List of all connections
 	vector<string>     hashIdentifiers;      // List of each connection's identifier
 	vector<int>        numOfConnectionUsers; // List of each connection's number of users
-
+	string getFileExt(vector<string> identifiers); //gets file extension
 	ConnectionManager();
 
 public:
