@@ -4,7 +4,7 @@
 
 
 all: 
-	g++ -o main Commandline_UI.cpp ConnectionManager.cpp DataRequestForm.cpp Model.cpp UserAccount.cpp WebsiteReporting.cpp databaseConnection.cpp jsoncpp.cpp textFileConnection.cpp testConnectionClasses.cpp
+	g++ -o main Commandline_UI.cpp ConnectionManager.cpp DataRequestForm.cpp Model.cpp UserAccount.cpp WebsiteReporting.cpp databaseConnection.cpp jsoncpp.cpp textFileConnection.cpp testConnectionClasses.cpp -w
 
 clean:
 	rm main
