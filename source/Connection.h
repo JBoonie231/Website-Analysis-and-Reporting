@@ -1,6 +1,6 @@
 #ifndef CONNECTION_H
 #define CONNECTION_H
-
+#include <vector>
 using namespace std;
 
 class Connection
