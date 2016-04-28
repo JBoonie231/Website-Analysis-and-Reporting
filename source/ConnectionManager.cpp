@@ -95,7 +95,7 @@ bool ConnectionManager::deleteConnection(Connection& connection)
     // Search for connection
     for (int i = 0; i < connections.size(); i++)
     {
-        if((*connections.at(i)).equals(connection))
+        if((*connections.at(i)).getHashId == connection.getHashId)
         {
             // If the connection has more than one user, decrement the number of users
             if(numOfConnectionUsers.at(i) > 1)
