@@ -14,7 +14,7 @@
 
 // Included Header Files
 #include "ConnectionManager.h"
-
+#include "textFileConnection.h"
 
 using namespace std;
 
@@ -26,7 +26,7 @@ ConnectionManager::ConnectionManager()
 
 
 
-string Connection::getFileExt(vector<string> identifiers)
+string ConnectionManager::getFileExt(vector<string> identifiers)
 {
     string fileName = identifiers[0];
     int lastChar = fileName.length()-3;
@@ -67,16 +67,17 @@ Connection * ConnectionManager::newConnection(vector<string> identifiers)
     // If connection wasn't found, create connection and connection values.
     //cout << "temp_conn about to be allocated" << endl;
 
-    fileExt = getFileExt(identifiers);
+    string fileExt = getFileExt(identifiers);
     
+    Connection *temp_conn;
     if (fileExt == "txt")
     {
-        Connection *temp_conn = new textFileConnection(identifiers);
+        temp_conn = new textFileConnection(identifiers);
     }
-    else if (fileExt == ".db")
+    /*else if (fileExt == ".db")
     {
-        Connection *temp_conn = new databaseConnection(identifiers);
-    }
+        Connection *temp_conn = (Connection*)new databaseConnection(identifiers);
+    }*/
     
     //cout << "temp_conn allocated" << endl;
     //cout << "connections.size =" << connections.size() << endl;
@@ -95,7 +96,7 @@ bool ConnectionManager::deleteConnection(Connection& connection)
     // Search for connection
     for (int i = 0; i < connections.size(); i++)
     {
-        if((*connections.at(i)).getHashId == connection.getHashId)
+        if((*connections.at(i)).getHashId() == connection.getHashId())
         {
             // If the connection has more than one user, decrement the number of users
             if(numOfConnectionUsers.at(i) > 1)
