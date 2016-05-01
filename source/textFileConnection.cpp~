@@ -15,7 +15,7 @@ using namespace std;
 
 ifstream databaseFile;
 
-string txtHashIdentifier="";
+string textFileConnection::hashIdentifier="";
 
 
 //use getHash() on both objects and then compare. Don't need an equals function =>  conn1->getHashId == conn2->getHashId
@@ -52,7 +52,7 @@ string textFileConnection::getTableContents(string tableName)
 
 string textFileConnection::getHashId()
 {
-  return txtHashIdentifier;
+  return hashIdentifier;
 }
 
 
@@ -60,7 +60,7 @@ void textFileConnection::setHashId(vector<string> identifiers)
 {
   for(int i=0; i<identifiers.size(); i++)
   {
-    txtHashIdentifier = txtHashIdentifier.append(identifiers[i]);
+    hashIdentifier = hashIdentifier.append(identifiers[i]);
   }
 }
 
@@ -68,7 +68,7 @@ void textFileConnection::setHashId(vector<string> identifiers)
 textFileConnection::textFileConnection(vector<string>& identifiers)
 {
   setHashId(identifiers);
-  char* filename = &txtHashIdentifier[0];
+  char* filename = &hashIdentifier[0];
   databaseFile.open(filename);
 }
 

@@ -8,7 +8,7 @@ class databaseConnection:public Connection
 {
   private:
     void setHashId(vector<string> identifiers);
-    string sqlHashIdentifier;
+    //string sqlHashIdentifier;
   public:
     databaseConnection(vector<string>& identifiers);
     ~databaseConnection();

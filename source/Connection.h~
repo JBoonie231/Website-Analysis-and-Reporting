@@ -9,6 +9,7 @@ class Connection
   protected:
     virtual void setHashId(vector<string> identifiers) = 0;
     vector<string> identifiers;
+    string hashIdentifier;
 
   public:
     virtual string getHashId() = 0;

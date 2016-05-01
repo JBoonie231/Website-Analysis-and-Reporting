@@ -9,7 +9,7 @@ class textFileConnection:public Connection
 {
   private:
     void setHashId(vector<string> identifiers);
-    string txtHashIdentifier;
+    //string txtHashIdentifier;
 
   public:
     textFileConnection(vector<string>& identifiers);

@@ -1,0 +1,8 @@
+source/a.out
+source/main
+source/sqlite3.c
+source/sqlite3.h
+source/json/*
+source/jsoncpp.cpp
+source/Makefile
+testConnectionClasses.cpp

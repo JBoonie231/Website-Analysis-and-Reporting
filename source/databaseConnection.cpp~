@@ -13,7 +13,7 @@
 using namespace std;
 
 
-string sqlsqlHashIdentifier="";
+string databaseConnection::hashIdentifier="";
 string sqlTable="";
 int rowNum = 0;
 
@@ -67,21 +67,21 @@ void databaseConnection::setHashId(vector<string> identifiers)
 {
   for(int i=0; i<identifiers.size(); i++)
   {
-    sqlHashIdentifier = sqlHashIdentifier.append(identifiers[i]);
+    hashIdentifier = hashIdentifier.append(identifiers[i]);
   }
 }
 
 
 string databaseConnection::getHashId()
 {
-  return sqlHashIdentifier;
+  return hashIdentifier;
 }
 
 
 databaseConnection::databaseConnection(vector<string>& identifiers)
 {
   setHashId(identifiers);
-  char* filename = &sqlHashIdentifier[0];
+  char* filename = &hashIdentifier[0];
 
   // open database
   rc = sqlite3_open(/*"Sqlite_Test.db"*/filename, &db);
