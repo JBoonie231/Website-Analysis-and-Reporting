@@ -14,10 +14,7 @@ class databaseConnection:public Connection
     ~databaseConnection();
     string getHashId();
     string getTableContents(string tableName);
+    string getTableRow(string tableName, string columnName, string value);
 };
 
 #endif
-
-
-
-//make database name not hard coded and table name not hard coded

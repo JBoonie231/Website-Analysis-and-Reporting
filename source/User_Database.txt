@@ -77,7 +77,7 @@
 
 USERS:
 username,password     ,role     ,connection    
-admin   ,password     ,it       ,User_Database.txt
-user1   ,user1password,marketing,Website_Database.txt
+admin   ,password     ,tech     ,User_Database.txt
+user1   ,user1password,marketer,Website_Database.txt
 
 

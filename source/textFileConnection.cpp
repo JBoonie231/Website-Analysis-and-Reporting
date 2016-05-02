@@ -10,19 +10,52 @@
 #include "Connection.h"
 #include "textFileConnection.h"
 
-
 using namespace std;
 
-ifstream databaseFile;
-
+ifstream databaseFile; //multiple instance of the same class share the this data member, why?
 string txtHashIdentifier="";
 
 
-//use getHash() on both objects and then compare. Don't need an equals function =>  conn1->getHashId == conn2->getHashId
+
+string textFileConnection::getTableRow(string tableName, string columnName, string value)
+{
+  databaseFile.clear();
+  databaseFile.seekg(0, ios::beg);
+
+  string line, line2;
+  string table;
+  transform(tableName.begin(),tableName.end(),tableName.begin(),::toupper);
+  string tableNameLine = tableName+":";
+
+  while(getline(databaseFile, line))
+  {
+    if (!line.compare(tableNameLine))
+    {
+      while(getline(databaseFile, line2))
+      {
+        line2.erase( remove( line2.begin(), line2.end(), ' ' ), line2.end() );
+        line2.erase( remove( line2.begin(), line2.end(), '\t' ), line2.end() );
+        size_t found = line2.find(",");
+        if(found!=std::string::npos)
+        {
+          string subValue = line2.substr(0,found);
+          if(!subValue.compare(value))table.append(line2);
+        }
+        else break;        
+      }
+      break;
+    }
+  }
+  return table;
+}
+
 
 
 string textFileConnection::getTableContents(string tableName)
 {
+  databaseFile.clear();
+  databaseFile.seekg(0, ios::beg);
+
   string line, line2;
   string table;
   transform(tableName.begin(),tableName.end(),tableName.begin(),::toupper);
@@ -36,8 +69,13 @@ string textFileConnection::getTableContents(string tableName)
       table.append("\n");
       while(getline(databaseFile, line2))
       {
-        table.append(line2);
-        table.append("\n");        
+        size_t found = line2.find(",");
+        if(found!=std::string::npos)
+        {
+          table.append(line2);
+          table.append("\n");
+        }
+        else break;        
       }
       break;
     }
@@ -50,10 +88,12 @@ string textFileConnection::getTableContents(string tableName)
 }
 
 
+
 string textFileConnection::getHashId()
 {
   return txtHashIdentifier;
 }
+
 
 
 void textFileConnection::setHashId(vector<string> identifiers)
@@ -65,12 +105,15 @@ void textFileConnection::setHashId(vector<string> identifiers)
 }
 
 
+
 textFileConnection::textFileConnection(vector<string>& identifiers)
 {
   setHashId(identifiers);
-  char* filename = &txtHashIdentifier[0];
+  string elm_filename = identifiers[0];
+  char* filename = &elm_filename[0];
   databaseFile.open(filename);
 }
+
 
 
 textFileConnection::~textFileConnection()

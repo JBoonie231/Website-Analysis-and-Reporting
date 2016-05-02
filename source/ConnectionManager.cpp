@@ -11,12 +11,12 @@
 
 using namespace std;
 
-ConnectionManager *ConnectionManager::s_instance = 0;
+ConnectionManager* ConnectionManager::s_instance = 0;
 
 ConnectionManager::ConnectionManager(){}
 
 
-string ConnectionManager::getFileExt(vector<string> identifiers)
+string ConnectionManager::getFileExtension(vector<string> identifiers)
 {
     string fileName = identifiers[0];
     int lastChar = fileName.length()-3;
@@ -47,7 +47,7 @@ Connection* ConnectionManager::newConnection(vector<string> identifiers)
     }
   }
 
-  string fileExt = getFileExt(identifiers);
+  string fileExt = getFileExtension(identifiers);
     
   Connection* temp_conn;
 
@@ -90,7 +90,7 @@ bool ConnectionManager::deleteConnection(Connection& connection)
 }
 
 
-ConnectionManager *ConnectionManager::instance()
+ConnectionManager* ConnectionManager::instance()
 {
   if (!s_instance)
   {
