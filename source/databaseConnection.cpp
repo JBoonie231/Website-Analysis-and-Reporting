@@ -12,10 +12,13 @@
 
 using namespace std;
 
-
-string sqlsqlHashIdentifier="";
-string sqlTable="";
+string sqlHashIdentifier="";
+string sqlReturn="";
+sqlite3* database;
+int rc;
 int rowNum = 0;
+
+
 
 static int callback(void* NotUsed, int argc, char** argv, char** szColName)
 {
@@ -23,44 +26,67 @@ static int callback(void* NotUsed, int argc, char** argv, char** szColName)
   {
     for(int i = 0; i < argc; i++)
     {
-      sqlTable.append(szColName[i]);
-      if(i<argc-1)sqlTable.append(",");
+      sqlReturn.append(szColName[i]);
+      if(i<argc-1)sqlReturn.append(",");
     }
-    sqlTable.append("\n");
+    sqlReturn.append("\n");
   }
   for(int i = 0; i < argc; i++)
   {
-   sqlTable.append(argv[i]);
-   if(i<argc-1)sqlTable.append(",");
+   sqlReturn.append(argv[i]);
+   if(i<argc-1)sqlReturn.append(",");
   }
-  sqlTable.append("\n");
+  sqlReturn.append("\n");
   rowNum+=1;
   return 0;
 }
 
-sqlite3 *db;
-int rc;
+
+
 string databaseConnection::getTableContents(string tableName)
 {
-  char *szErrMsg = 0;
+  sqlReturn="";
+  char* errorMsg = 0;
   transform(tableName.begin(),tableName.end(),tableName.begin(),::toupper);
-  sqlTable = tableName+":\n";
-
+  sqlReturn = tableName+":\n";
 
   // prepare our sql statements
   string selectQuery = "SELECT * FROM "+tableName;
   const char* ptr_sqlSelect = selectQuery.c_str();
 
   // execute sql
-  rc = sqlite3_exec(db, ptr_sqlSelect, callback, 0, &szErrMsg);
+  rc = sqlite3_exec(database, ptr_sqlSelect, callback, 0, &errorMsg);
   if(rc != SQLITE_OK)
   {
-    std::cout << "SQL Error: " << szErrMsg << std::endl;
-    sqlite3_free(szErrMsg);
+    std::cout << "SQL Error: " << errorMsg << std::endl;
+    sqlite3_free(errorMsg);
   }
 
-  return sqlTable;
+  return sqlReturn;
 }
+
+
+
+string databaseConnection::getTableRow(string tableName, string columnName, string value)
+{
+  sqlReturn="";
+  char* errorMsg = 0;
+
+  // prepare our sql statements
+  string selectQuery = "SELECT * FROM "+tableName+" WHERE "+columnName+"='"+value+"'";
+  const char* ptr_sqlSelect = selectQuery.c_str();
+
+  // execute sql
+  rc = sqlite3_exec(database, ptr_sqlSelect, callback, 0, &errorMsg);
+  if(rc != SQLITE_OK)
+  {
+    std::cout << "SQL Error: " << errorMsg << std::endl;
+    sqlite3_free(errorMsg);
+  }
+
+  return sqlReturn;
+}
+
 
 
 void databaseConnection::setHashId(vector<string> identifiers)
@@ -72,10 +98,12 @@ void databaseConnection::setHashId(vector<string> identifiers)
 }
 
 
+
 string databaseConnection::getHashId()
 {
   return sqlHashIdentifier;
 }
+
 
 
 databaseConnection::databaseConnection(vector<string>& identifiers)
@@ -84,7 +112,7 @@ databaseConnection::databaseConnection(vector<string>& identifiers)
   char* filename = &sqlHashIdentifier[0];
 
   // open database
-  rc = sqlite3_open(/*"Sqlite_Test.db"*/filename, &db);
+  rc = sqlite3_open(filename, &database);
   if(rc)
   {
     std::cout << "Can't open database\n";
@@ -96,12 +124,13 @@ databaseConnection::databaseConnection(vector<string>& identifiers)
 }
 
 
+
 databaseConnection::~databaseConnection()
 {
   // close database
-  if(db)
+  if(database)
   {
-    sqlite3_close(db);
+    sqlite3_close(database);
   }
 }
 

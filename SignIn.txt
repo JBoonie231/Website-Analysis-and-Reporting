@@ -1,6 +1,7 @@
-Joshua Boone
-Josiah Hayes
-Jordan Spinato
-Alex Hoppe
-Sara Adra
-Testing my git credentials ignore this
+These are the users in the Qt-WAAR (Qt Website Analysis And Reporting) database that you can sign in as.
+
+joshua, boone, engineer
+josiah, hayes, tech
+jordan, spinato, manager
+alex, hoppe, marketer
+sara, adra, accountant
