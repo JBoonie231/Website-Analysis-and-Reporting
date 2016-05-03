@@ -14,7 +14,7 @@ using namespace std;
 
 class ConnectionManager
 {
-  private
+  private:
     ConnectionManager();
     static ConnectionManager* s_instance;
     vector<Connection*> connections;     // List of all connections
