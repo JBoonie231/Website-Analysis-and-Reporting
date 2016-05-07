@@ -9,7 +9,7 @@
 // Included Header Files
 #include "DataRequestForm.h"
 #include "json/json.h"
-#include "jsoncpp.cpp"
+//#include "jsoncpp.cpp"
 
 using namespace std;
 
@@ -92,17 +92,15 @@ DataRequestForm :: ~DataRequestForm()
 
 
 
-
+/*
 int main()
 {
 	DataRequestForm d1;
 	string test = d1.getTable("visits");
 
 	cout << test << endl;
-
-
-
 }
+*/
 
 
 #endif
