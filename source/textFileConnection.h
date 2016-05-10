@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <fstream>
+#include "json/json.h"
+
 using namespace std;
 
 
@@ -19,6 +21,7 @@ class textFileConnection:public Connection
     string getHashId();
     string getTableContents(string tableName);
     string getTableRow(string tableName, string columnName, string value);
+    Json::Value getJsonTable(string tableName);
 };
 
 #endif
