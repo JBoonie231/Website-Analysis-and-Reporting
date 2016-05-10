@@ -9,6 +9,8 @@
 #include "sqlite3.h"
 #include "Connection.h"
 #include "databaseConnection.h"
+#include "json/json.h"
+
 
 using namespace std;
 
@@ -17,8 +19,22 @@ string sqlReturn="";
 sqlite3* database;
 int rc;
 int rowNum = 0;
+Json::Value jsonTable;
+Json::Value jsonRows;
 
 
+static int jsonCallback(void* NotUsed, int colNum, char** value, char** colName)
+{
+  int i;
+	for(i=0; i<colNum; i++)
+	{
+    const char* col_name = colName[i];
+    const char* row_value = value[i];
+    jsonRows[rowNum][col_name] = row_value;
+	}
+  rowNum+=1;
+	return 0;
+}
 
 static int callback(void* NotUsed, int argc, char** argv, char** szColName)
 {
@@ -41,7 +57,27 @@ static int callback(void* NotUsed, int argc, char** argv, char** szColName)
   return 0;
 }
 
+Json::Value databaseConnection::getJsonTable(string tableName)
+{
+  char* errorMsg = 0;
+  transform(tableName.begin(),tableName.end(),tableName.begin(),::toupper);
 
+  // prepare our sql statements
+  string selectQuery = "SELECT * FROM "+tableName;
+  const char* ptr_sqlSelect = selectQuery.c_str();
+
+  // execute sql
+  rc = sqlite3_exec(database, ptr_sqlSelect, jsonCallback, 0, &errorMsg);
+  if(rc != SQLITE_OK)
+  {
+    std::cout << "SQL Error: " << errorMsg << std::endl;
+    sqlite3_free(errorMsg);
+  }
+
+  jsonTable[tableName] = jsonRows;
+
+  return jsonTable;
+}
 
 string databaseConnection::getTableContents(string tableName)
 {
@@ -64,8 +100,6 @@ string databaseConnection::getTableContents(string tableName)
 
   return sqlReturn;
 }
-
-
 
 string databaseConnection::getTableRow(string tableName, string columnName, string value)
 {
@@ -133,4 +167,3 @@ databaseConnection::~databaseConnection()
     sqlite3_close(database);
   }
 }
-
