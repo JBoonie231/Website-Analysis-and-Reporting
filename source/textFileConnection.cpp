@@ -9,12 +9,21 @@
 // Included Header Files
 #include "Connection.h"
 #include "textFileConnection.h"
+#include "json/json.h"
+#include "json/json-forwards.h"
 
 using namespace std;
 
-ifstream databaseFile; //multiple instance of the same class share the this data member, why?
+ifstream databaseFile;
 string txtHashIdentifier="";
 
+
+Json::Value textFileConnection::getJsonTable(string tableName)
+{
+  Json::Value jsonTable;
+  jsonTable["table_name"]["column_name"] = "value";
+  return jsonTable;
+}
 
 
 string textFileConnection::getTableRow(string tableName, string columnName, string value)
