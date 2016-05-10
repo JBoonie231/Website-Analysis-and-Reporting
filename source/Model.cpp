@@ -4,6 +4,8 @@
 // Libraries
 #include <iostream>
 #include <string>
+#include "json/json.h"
+
 
 using namespace std;
 
@@ -45,7 +47,7 @@ bool Model :: createUser(string userName, string password, string &role)
   bool createUserSuccessful = false;
 
   createUserSuccessful = userAccount->createUser(userName, password, role);
-  
+
   return createUserSuccessful;
 
 } // end  createUser
@@ -91,15 +93,26 @@ Function: getTable
 Input: table information to load
 Purpose: calls frunction get table from the data request form class
 */
-string Model :: getTable (string table)
+Json::Value Model :: getTable (string table)
 {
-  string returnedTable = "";
+  Json::Value returnedTable = "";
 
   returnedTable = dataRequestForm->getTable(table);
 
   return returnedTable;
 }
 
+
+
+int main()
+{
+	DataRequestForm d;
+	Json::Value display;
+
+	display = d.getTable("VISITS");
+	cout << display << endl;
+
+}
 
 
 

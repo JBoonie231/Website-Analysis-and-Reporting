@@ -10,6 +10,8 @@ using namespace std;
 /* Included Header Files */
 #include "UserAccount.h"
 #include "DataRequestForm.h"
+#include "json/json.h"
+
 
 /* Singleton Class
 1- Define a private static attribute in the "single instance" class
@@ -21,7 +23,7 @@ using namespace std;
 The base class must be declared a friend of the derived class
 (in order to access the protected constructor).
 */
- 
+
 class Model
 {
 
@@ -38,7 +40,7 @@ public:
   bool createUser(string username, string password, string &role);
   bool deleteUser(string username);
   bool loadUser(string username, string password);
-  string getTable (string tableName);
+  Json::Value getTable (string tableName);
 
   // 2. Public Static Accessor
   static Model *instance();
