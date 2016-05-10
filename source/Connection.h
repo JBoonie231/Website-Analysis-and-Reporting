@@ -2,6 +2,8 @@
 #define CONNECTION_H
 
 #include <vector>
+#include "json/json.h"
+
 using namespace std;
 
 class Connection
@@ -13,6 +15,7 @@ class Connection
     virtual string getHashId() = 0;
     virtual string getTableContents(string table) = 0;
     virtual string getTableRow(string tableName, string columnName, string value) = 0;
+    virtual Json::Value getJsonTable(string tableName) = 0;
 };
 
 #endif
