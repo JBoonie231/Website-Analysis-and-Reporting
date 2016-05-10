@@ -30,49 +30,32 @@ Function: Get Table
 Input: User information to create an account
 Purpose: calls frunction create user from userAccount class
 */
-string DataRequestForm::getTable(string tableName)
+Json :: Value DataRequestForm::getTable(string tableName)
 {
-  string tableContents;
-	string returnedValue;
-	vector<string> tableVector;
+	Json::Value tableContents;
+
+	/* Columns from the database */
+	vector <string> columns;
+	vector <string> tableVector;
+	string output;
+
+	// DB Info: visitor_ip,visitor_username,date_of_visit      ,page_visited     ,date_left_page
+	int tableColumns = 5;
+	columns.push_back("visitor_ip");
+	columns.push_back("visitor_username");
+	columns.push_back("date_of_visit");
+	columns.push_back("page_visited");
+	columns.push_back("date_left_page");
 
   // if connection exists save table JSON string
-  //tableContents = "Here's your table contents!";
-  tableContents = connPtr->getTableContents(tableName);
+  tableContents = connPtr->getJsonTable(tableName);
 
-	Json::Value root; // root value after parsing
-	Json::Reader reader;
-	bool parsingSuccessful = reader.parse("Website_Database.txt", root,true);
-	if (!parsingSuccessful)
+	for (int i = 0; i < tableColumns; i++)
 	{
-		cout << "Failed to parse the configuration" << endl;
-		return "INVALID";
+		output = tableContents[tableName][0][columns[i]].asString();
+		tableVector.push_back(output);
 	}
-	// DB Info: visitor_ip,visitor_username,date_of_visit      ,page_visited     ,date_left_page
-	cout << "Success1" << endl;
-
-while(reader.parse(connectionName,root,true))
-{
-	cout << "Success2" << endl;
-// get value of the member of root named encoding and return ERROR if there is no such member
-	string visitorIP       = root.get("visitor_ip", "Invalid_IP").asString();
-	string visitorUserName = root.get("visitor_username", "Invalid_Username").asString();
-	string dateOfVisit     = root.get("date_of_visit", "Invalid_Date_Visit").asString();
-	string pageVisited     = root.get("page_visited", "Invalid_Page_Visit").asString();
-	string dateLeftPage    = root.get("date_left_page", "Invalid_Date_Left").asString();
-
-	tableVector.push_back(visitorIP);
-	tableVector.push_back(visitorUserName);
-	tableVector.push_back(dateOfVisit);
-	tableVector.push_back(pageVisited);
-	tableVector.push_back(dateLeftPage);
-	tableVector.push_back("\n");
-
-	returnedValue = visitorIP + " " + visitorUserName + " " + dateOfVisit + " " + pageVisited + " " + dateLeftPage + "\n";
-}
-  //setTableString(tableContents);
-
-  return returnedValue;
+  return tableContents;
 }
 /*
 void DataRequestForm::setTableString(string tString)

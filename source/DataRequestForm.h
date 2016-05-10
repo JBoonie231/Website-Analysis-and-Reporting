@@ -25,7 +25,7 @@ private:
 
 public:
   DataRequestForm();
-  string getTable(string tableName);
+  Json::Value getTable(string tableName);
   void setTableString(string tString);
   ~DataRequestForm();
 
