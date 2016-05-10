@@ -2,6 +2,9 @@
 #define DATABASECONNECTION_H
 
 #include <vector>
+#include "json/json.h"
+#include "json/json-forwards.h"
+
 using namespace std;
 
 class databaseConnection:public Connection 
@@ -15,6 +18,7 @@ class databaseConnection:public Connection
     string getHashId();
     string getTableContents(string tableName);
     string getTableRow(string tableName, string columnName, string value);
+    Json::Value getJsonTable(string tableName);
 };
 
 #endif
